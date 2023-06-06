@@ -14,7 +14,7 @@ At the centre of every atom lies its nucleus. A nucleus is comprised of protons 
 
 #### Energy States
 
-For a given isotope, there will be a number of discrete energy levels. Each nucleus of that isotope will exist in one of these energy states. These energy states are labelled such that state 0 is the lowest energy state, state 1 is the second lowest and so on. The energy difference between energy states is typically defined in units of keV (1keV = $1.6\times 10 ^{-16}$ J).
+For a given isotope, there will be a number of discrete energy levels. Each nucleus of that isotope will exist in one of these energy states. These energy states are labelled such that state 0 is the lowest energy state, state 1 is the second lowest and so on. The energy difference between energy states is typically defined in units of keV (1keV = $1.6\times 10 ^{-16}$ J). If it isn't stated which energy state an isomer is, it is very likely the ground state which is being referred to.
 
 ### Nuclear Decay
 
@@ -51,3 +51,7 @@ $$
 $$
 
 This means that, form every million nuclei of Xe $^{135}$ present, around 21 of them will decay each second.
+
+We can return the differential equations we defined earlier for the rate of change of the number of moles of Xe $^{135}$ and Cs $^{135}$ and solve these by a number of differen means to describe the number of moles of these two isotopes over a period of time. We can plot the number of moles of the isotopes present as a function of time giving an initial population of 1 mole of Xe $^{135}$ :
+
+
