@@ -27,6 +27,6 @@ class SystemPreDefined(System):
             if len(isomer_names) != len(decay_rates):
                 raise ValueError("If isomer_names is provided, it must have the same number of entries as decay_rates.")
             else:
-                self._isomer_names = isomer_names
+                self._isomer_names = np.array(isomer_names)
         else:
             self._isomer_names = np.array(tuple("Isomer {}".format(i) for i in range(initial_conditions.shape[0])))
