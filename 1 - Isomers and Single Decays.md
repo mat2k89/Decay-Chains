@@ -100,7 +100,7 @@ Some files (such as ```dec-082_Pb_208.endf```) may also say ```Parent half-life:
 The decay mode is contained on the line beginning ```Decay mode:```. In the example above, the ```B-``` tells us Xe$^{135}$ decays by electron emission. There is more complexity to what may appear on this line but, for now, we can restrict ourselves to the following decay modes:
 
 | ENDF Decay Code     | Decay Mode | 
-| ----------- | ----------- | -- |
+| ----------- | ----------- |
 | A | Alpha Emission  | 
 | B- | Beta Emission  |
 | EC | Electron Capture  |
