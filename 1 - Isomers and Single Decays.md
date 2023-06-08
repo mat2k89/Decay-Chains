@@ -107,5 +107,25 @@ The decay mode is contained on the line beginning ```Decay mode:```. In the exam
 
 ## Activities
 
+For each of the activities below, complete the code in your ```src``` directory in whatever way you wish, organising your code however you think makes most sense. For each activity there are tests in the ```tests``` directory which relate to the activity. For instance ```tests/test_1A``` contains the tests relating to Activity 1A. You will need to edit each function in these files so they interface with the code you write. This should give you some more idea of what your code should do, as well allowing you to test that your code is working correctly.
+
+As a reminder, these activities can be undertaken in parallel if you're working in a group, so feel free to split up on work on different activities together.
+
 ### Activity 1A
 
+Write code able to solve differential equations such as those above in the "Nuclear Decay" section. We'll start with the simplest scenario - where Isomer 1 is decaying into Isomer 2, which is stable. Your code should be able to accept an initial number of moles of both isotopes and a decay rate for Isomer 1, then provide the number of moles of each isomer at a set of provided time-steps.
+
+Hint: this type of problem is often referred to as an "initial value problem" as you have the initial state of the system and want to calculate the future states of the system by solving the ordinary differential equations forward in time.
+
+### Activity 1B 
+
+Write code able to read the ENDF data files and extract the half-life and decay mode of a given isomer. Given the name of a file (without any path prefix) your code should be able to open the file and find:
+* the half-life and convert it to a decay rate in units of 1/s (noting this will be zero for stable isomers)
+* the decay mode and the effect this has on the atomic number, atomic mass, and energy state number of the decaying isomer
+
+### Activity 1C
+
+It's important to be able to make conversions between different bits of data relating to the isomers. Write pieces of code which can:
+* generate the name of the ENDF file name for an isomer from its atomic number, atomic mass, and energy group number,
+* generate the name of an isomer (e.g. ```Xe_135``` or ```Na_024m```) from its atomic number, atomic mass, and energy group number,
+* generate the atomic number, atomic mass and energy state number of an isomer given its name.
