@@ -54,4 +54,8 @@ This means that, form every million nuclei of Xe $^{135}$ present, around 21 of 
 
 We can return the differential equations we defined earlier for the rate of change of the number of moles of Xe $^{135}$ and Cs $^{135}$ and solve these by a number of differen means to describe the number of moles of these two isotopes over a period of time. We can plot the number of moles of the isotopes present as a function of time giving an initial population of 1 mole of Xe $^{135}$ :
 
+<p align="center">
+  <img src="https://github.com/coolernato/Decay-Chains/blob/main/resources/Xe_135_Cs_135.jpg" />
+</p>
+
 
