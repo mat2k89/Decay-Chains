@@ -62,7 +62,7 @@ The production of data like these can help us to predict the populations of radi
 
 ### The ENDF Decay Dataset
 
-In order to perform simulations like this, we need data relating to how fast isomers decay and how the decay. There are several datasets available which provide this information. The ENDF dataset is provided by the [Nantional Nuclear Data Centre (NNDC)](https://www.nndc.bnl.gov/sigma/index.jsp?as=239&lib=endfb7.0&nsub=10). Copies of the relevant files are included in the ```decay_data``` directory of this repository.
+In order to perform simulations like this, we need data relating to how fast isomers decay and how the decay. There are several datasets available which provide this information. The ENDF dataset is provided by the [Nantional Nuclear Data Centre (NNDC)](https://www.nndc.bnl.gov/sigma/index.jsp?as=239&lib=endfb7.0&nsub=10). The dataset as a whole contains a lot of information relating to various properties of different nuclei. Copies of the files relating to radioactive decay are included in the ```decay_data``` directory of this repository.
 
 The filename for a given isomer is ```dec-```, followed by the atomic number of the isomer (padded with leading zeroes so it's three digits long), a ```_```, the atomic symbol for the element (e.g. ```He``` for Helium), another ```_```, then atomic mass of the isomer (padded with leading zeroes so it's three digits long), and finally ```.endf```. Files in this format all relate to the ground state isomers of an isotope. Files which correspond to a higher state have an adittional ```m1``` for the first excited stated, ```m2``` for the second excited state and so on immediately before the ```.endf```. To give a few examples:
 
