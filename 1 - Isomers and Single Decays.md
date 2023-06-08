@@ -22,10 +22,10 @@ Many isomers are unstable and will decay to a lower energy isomer. This decay wi
 
 | Decay Type      | Change to Atomic Number | Change to Atomic Mass |
 | ----------- | ----------- | -- |
-| Alpha Emission  ( $\alpha$ ) | -4  | -2 |
-| Electron emission ( $\beta^{-}$ )     | +1  | 0  |
-| Gamma Emission  ( $\gamma$ ) | 0  | 0 |
-| Electron capture  ( $\epsilon$ ) | 0  | -1 |
+| Alpha Emission   | -4  | -2 |
+| Beta emission      | +1  | 0  |
+| Gamma Emission   | 0  | 0 |
+| Electron capture   | 0  | -1 |
 
 
 For each individual nuclei, it cannot be predicted exactly when it will decay. However, we may observe a large collection of isomers measure the timescales over which they decay occurs and observe which particles are emitted. Xenon-135 (written as Xe $^{135}$ ) decays via electron emission. Xenon has an atomic number of 54 so, consulting the table above, we see that it will turn into a nucleus with an atomic number of 55 and its atomic mass will remain unchanged at 135. This means a nucleus of Xe $^{135}$ will decay to form a nucleus of Cs $^{135}$ . 
@@ -70,4 +70,62 @@ The filename for a given isomer is ```dec-```, followed by the atomic number of 
 * Data relating to the ground state of Mendelevium-255 (atomic number 101) is found in ```dec-101_Md_255.endf```
 * Data relating to the first excited state of Cadmium-111 (atomic number 48) is found in ```dec-048_Cd_111m1.endf```
 
+Each data file contains a large amount of data, but don't be alarmed - most of it isn't relevant to this project. In fact, for now, we only care about two pieces of information in this file: the half-life and the decay mode. Let's examine the first few lines of the file ```dec-054_Xe_135.endf```:
 
+<p align="center">
+  <img src="https://github.com/coolernato/Decay-Chains/blob/main/resources/Xe-135-ENDF.png" />
+</p>
+
+In this file, we only care about the section highlighted in red. 
+
+#### Obtaining the Half-Life
+
+The line that has the phrase "Parent half-life" describes the half-life of Xe$^{135}$ by providing first the numerical value of 9.14, then the units ```H``` which refers to the nubmbr of hours. We can ignore the ```2``` following the ```H``` and the rest of the line.  The different characters to describe the units and the corresponding units are:
+
+| Character     | Unit | Number of Seconds |
+| ----------- | ----------- | -- |
+| PS | Picoseconds  | $1\times 10^{-12}$ |
+| NS | Nanoseconds  | $1\times 10^{-9}$ |
+| US | Microseconds  | $1\times 10^{-6}$ |
+| MS | Milliseconds  | $1\times 10^{-3}$ |
+| S | Milliseconds  | $1$ |
+| H | Hours  | $3.6\times 10^{3}$ |
+| D | Days  | $8.64\times 10^{4}$ |
+| Y | Years  | $3.1536\times 10^{7}$ |
+
+Some files (such as ```dec-082_Pb_208.endf```) may also say ```Parent half-life: STABLE```. This means that the isomer does not decay at all.
+
+#### Obtaining the Decay Mode
+
+The decay mode is contained on the line beginning ```Decay mode:```. In the example above, the ```B-``` tells us Xe$^{135}$ decays by electron emission. There is more complexity to what may appear on this line but, for now, we can restrict ourselves to the following decay modes:
+
+| ENDF Decay Code     | Decay Mode | 
+| ----------- | ----------- | -- |
+| A | Alpha Emission  | 
+| B- | Beta Emission  |
+| EC | Electron Capture  |
+
+## Activities
+
+For each of the activities below, complete the code in your ```src``` directory in whatever way you wish, organising your code however you think makes most sense. For each activity there are tests in the ```tests``` directory which relate to the activity. For instance ```tests/test_1A``` contains the tests relating to Activity 1A. You will need to edit each function in these files so they interface with the code you write. This should give you some more idea of what your code should do, as well allowing you to test that your code is working correctly.
+
+As a reminder, these activities can be undertaken in parallel if you're working in a group, so feel free to split up on work on different activities together.
+
+### Activity 1A
+
+Write code able to solve differential equations such as those above in the "Nuclear Decay" section. We'll start with the simplest scenario - where Isomer 1 is decaying into Isomer 2, which is stable. Your code should be able to accept an initial number of moles of both isotopes and a decay rate for Isomer 1, then provide the number of moles of each isomer at a set of provided time-steps.
+
+Hint: this type of problem is often referred to as an "initial value problem" as you have the initial state of the system and want to calculate the future states of the system by solving the ordinary differential equations forward in time.
+
+### Activity 1B 
+
+Write code able to read the ENDF data files and extract the half-life and decay mode of a given isomer. Given the name of a file (without any path prefix) your code should be able to open the file and find:
+* the half-life and convert it to a decay rate in units of 1/s (noting this will be zero for stable isomers)
+* the decay mode and the effect this has on the atomic number, atomic mass, and energy state number of the decaying isomer
+
+### Activity 1C
+
+It's important to be able to make conversions between different bits of data relating to the isomers. Write pieces of code which can:
+* generate the name of the ENDF file name for an isomer from its atomic number, atomic mass, and energy group number,
+* generate the name of an isomer (e.g. ```Xe_135``` or ```Na_024m```) from its atomic number, atomic mass, and energy group number,
+* generate the atomic number, atomic mass and energy state number of an isomer given its name.
