@@ -14,7 +14,7 @@ At the centre of every atom lies its nucleus. A nucleus is comprised of protons 
 
 #### Energy States
 
-For a given isotope, there will be a number of discrete energy levels. Each nucleus of that isotope will exist in one of these energy states. These energy states are labelled such that state 0 is the lowest energy state, state 1 is the second lowest and so on. The energy difference between energy states is typically defined in units of keV (1keV = $1.6\times 10 ^{-16}$ J). If it isn't stated which energy state an isomer is, it is very likely the ground state which is being referred to.
+For a given isotope, there will be a number of discrete energy levels. Each nucleus of that isotope will exist in one of these energy states. These energy states are labelled such that state 0 is the lowest energy state, state 1 is the second lowest and so on. The energy difference between energy states is typically defined in units of keV (1keV = $1.6\times 10 ^{-16}$ J). If it isn't stated which energy state an isomer is, it is very likely the ground state is being referred to.
 
 ### Nuclear Decay
 
@@ -53,5 +53,21 @@ $$
 This means that, form every million nuclei of Xe $^{135}$ present, around 21 of them will decay each second.
 
 We can return the differential equations we defined earlier for the rate of change of the number of moles of Xe $^{135}$ and Cs $^{135}$ and solve these by a number of differen means to describe the number of moles of these two isotopes over a period of time. We can plot the number of moles of the isotopes present as a function of time giving an initial population of 1 mole of Xe $^{135}$ :
+
+<p align="center">
+  <img src="https://github.com/coolernato/Decay-Chains/blob/main/resources/Xe_135_Cs_135.jpg" />
+</p>
+
+The production of data like these can help us to predict the populations of radioactive isotopes in practical settings.
+
+### The ENDF Decay Dataset
+
+In order to perform simulations like this, we need data relating to how fast isomers decay and how the decay. There are several datasets available which provide this information. The ENDF dataset is provided by the [Nantional Nuclear Data Centre (NNDC)](https://www.nndc.bnl.gov/sigma/index.jsp?as=239&lib=endfb7.0&nsub=10). Copies of the relevant files are included in the ```decay_data``` directory of this repository.
+
+The filename for a given isomer is ```dec-```, followed by the atomic number of the isomer (padded with leading zeroes so it's three digits long), a ```_```, the atomic symbol for the element (e.g. ```He``` for Helium), another ```_```, then atomic mass of the isomer (padded with leading zeroes so it's three digits long), and finally ```.endf```. Files in this format all relate to the ground state isomers of an isotope. Files which correspond to a higher state have an adittional ```m1``` for the first excited stated, ```m2``` for the second excited state and so on immediately before the ```.endf```. To give a few examples:
+
+* Data relating to the ground state of Carbon-14 (atomic number 6) if found in ```dec-006_C_014.endf```
+* Data relating to the ground state of Mendelevium-255 (atomic number 101) is found in ```dec-101_Md_255.endf```
+* Data relating to the first excited state of Cadmium-111 (atomic number 48) is found in ```dec-048_Cd_111m1.endf```
 
 
