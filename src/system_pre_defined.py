@@ -2,7 +2,7 @@ from system import System
 import numpy as np
 
 class SystemPreDefined(System):
-    def __init__(self, initial_conditions, decay_rates):
+    def __init__(self, initial_conditions, decay_rates, isomer_names = None):
         if len(initial_conditions) != len(decay_rates):
             raise ValueError("There should be the same number of initial conditions as decay rates")
         
@@ -23,4 +23,10 @@ class SystemPreDefined(System):
         
         self._initial_conditions = initial_conditions
 
-        self._isomer_names = np.array(tuple("Isomer {}".format(i) for i in range(initial_conditions.shape[0])))
+        if isomer_names:
+            if len(isomer_names) != len(decay_rates):
+                raise ValueError("If isomer_names is provided, it must have the same number of entries as decay_rates.")
+            else:
+                self._isomer_names = isomer_names
+        else:
+            self._isomer_names = np.array(tuple("Isomer {}".format(i) for i in range(initial_conditions.shape[0])))
