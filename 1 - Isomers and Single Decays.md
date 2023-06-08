@@ -22,10 +22,10 @@ Many isomers are unstable and will decay to a lower energy isomer. This decay wi
 
 | Decay Type      | Change to Atomic Number | Change to Atomic Mass |
 | ----------- | ----------- | -- |
-| Alpha Emission  ( $\alpha$ ) | -4  | -2 |
-| Electron emission ( $\beta^{-}$ )     | +1  | 0  |
-| Gamma Emission  ( $\gamma$ ) | 0  | 0 |
-| Electron capture  ( $\epsilon$ ) | 0  | -1 |
+| Alpha Emission   | -4  | -2 |
+| Beta emission      | +1  | 0  |
+| Gamma Emission   | 0  | 0 |
+| Electron capture   | 0  | -1 |
 
 
 For each individual nuclei, it cannot be predicted exactly when it will decay. However, we may observe a large collection of isomers measure the timescales over which they decay occurs and observe which particles are emitted. Xenon-135 (written as Xe $^{135}$ ) decays via electron emission. Xenon has an atomic number of 54 so, consulting the table above, we see that it will turn into a nucleus with an atomic number of 55 and its atomic mass will remain unchanged at 135. This means a nucleus of Xe $^{135}$ will decay to form a nucleus of Cs $^{135}$ . 
@@ -70,4 +70,42 @@ The filename for a given isomer is ```dec-```, followed by the atomic number of 
 * Data relating to the ground state of Mendelevium-255 (atomic number 101) is found in ```dec-101_Md_255.endf```
 * Data relating to the first excited state of Cadmium-111 (atomic number 48) is found in ```dec-048_Cd_111m1.endf```
 
+Each data file contains a large amount of data, but don't be alarmed - most of it isn't relevant to this project. In fact, for now, we only care about two pieces of information in this file: the half-life and the decay mode. Let's examine the first few lines of the file ```dec-054_Xe_135.endf```:
+
+<p align="center">
+  <img src="https://github.com/coolernato/Decay-Chains/blob/main/resources/Xe-135-ENDF.png" />
+</p>
+
+In this file, we only care about the section highlighted in red. 
+
+#### Obtaining the Half-Life
+
+The line that has the phrase "Parent half-life" describes the half-life of Xe$^{135}$ by providing first the numerical value of 9.14, then the units ```H``` which refers to the nubmbr of hours. We can ignore the ```2``` following the ```H``` and the rest of the line.  The different characters to describe the units and the corresponding units are:
+
+| Character     | Unit | Number of Seconds |
+| ----------- | ----------- | -- |
+| PS | Picoseconds  | $1\times 10^{-12}$ |
+| NS | Nanoseconds  | $1\times 10^{-9}$ |
+| US | Microseconds  | $1\times 10^{-6}$ |
+| MS | Milliseconds  | $1\times 10^{-3}$ |
+| S | Milliseconds  | $1$ |
+| H | Hours  | $3.6\times 10^{3}$ |
+| D | Days  | $8.64\times 10^{4}$ |
+| Y | Years  | $3.1536\times 10^{7}$ |
+
+Some files (such as ```dec-082_Pb_208.endf```) may also say ```Parent half-life: STABLE```. This means that the isomer does not decay at all.
+
+#### Obtaining the Decay Mode
+
+The decay mode is contained on the line beginning ```Decay mode:```. In the example above, the ```B-``` tells us Xe$^{135}$ decays by electron emission. There is more complexity to what may appear on this line but, for now, we can restrict ourselves to the following decay modes:
+
+| ENDF Decay Code     | Decay Mode | 
+| ----------- | ----------- | -- |
+| A | Alpha Emission  | 
+| B- | Beta Emission  |
+| EC | Electron Capture  |
+
+## Activities
+
+### Activity 1A
 
