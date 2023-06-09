@@ -1,2 +1,2 @@
 import unittest
-import tests.interfaces as interface
+import src.test_interfaces as interface

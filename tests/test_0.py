@@ -1,5 +1,5 @@
 import unittest
-import tests.interfaces as interface
+import src.test_interfaces as interface
 
 class Test_0_getting_started(unittest.TestCase):
     def test_always_return_0(self):
