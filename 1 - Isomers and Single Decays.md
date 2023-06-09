@@ -107,7 +107,7 @@ The decay mode is contained on the line beginning ```Decay mode:```. In the exam
 
 ## Activities
 
-For each of the activities below, complete the code in your ```src``` directory in whatever way you wish, organising your code however you think makes most sense. For each activity there are tests in the ```tests``` directory which relate to the activity. For instance ```tests/test_1A``` contains the tests relating to Activity 1A. You will need to edit each function in these files so they interface with the code you write. This should give you some more idea of what your code should do, as well allowing you to test that your code is working correctly.
+For each of the activities below, complete the code in your ```src``` directory in whatever way you wish, organising your code however you think makes most sense. For each activity there are tests in the ```tests``` directory which relate to the activity. For instance ```tests/test_1A``` contains the tests relating to Activity 1A. In order to allow these tests to check your code, you will need to edit the relevant functions in these file ```src/test_intterfaces.py``` so they use your code. This should give you some more idea of what your code should do, as well allowing you to test that your code is working correctly.
 
 As a reminder, these activities can be undertaken in parallel if you're working in a group, so feel free to split up on work on different activities together.
 
