@@ -6,5 +6,5 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 class Test_1B(unittest.TestCase):
     '''
-    Tests the code produced for Activity 1B
+    Tests the code produced for Activity 1C
     '''
