@@ -1,7 +1,7 @@
 import unittest
 import src.test_interfaces as interface
 
-class Test_0_getting_started(unittest.TestCase):
+class Test_0(unittest.TestCase):
     def test_always_return_0(self):
         '''This test checks 0 is always returned from the correct function'''
         self.assertEqual(interface.task_0_always_return_0(), 0)
