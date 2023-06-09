@@ -5,6 +5,9 @@ import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 class Test_1A(unittest.TestCase):
+    '''
+    Tests the code produced for exercise 1B
+    '''
     # The comparison tolerances to be used for these tests
     # They are deliberately quite loose, to keep the focus off technicalities of numerical accuracy of ivp solvers
     relative_tolerance = 1e-2
