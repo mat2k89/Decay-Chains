@@ -127,5 +127,5 @@ Write code able to read the ENDF data files and extract the half-life and decay 
 
 It's important to be able to make conversions between different bits of data relating to the isomers. Write pieces of code which can:
 * generate the name of the ENDF file name for an isomer from its atomic number, atomic mass, and energy group number,
-* generate the name of an isomer (e.g. ```Xe_135``` or ```Na_024m1```) from its atomic number, atomic mass, and energy group number,
+* generate the name of an isomer (e.g. ```Xe135``` or ```Na024m1```) from its atomic number, atomic mass, and energy group number,
 * generate the atomic number, atomic mass and energy state number of an isomer given its name.
