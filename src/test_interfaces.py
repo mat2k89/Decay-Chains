@@ -17,6 +17,7 @@ def task_0_addition(a, b):
 
 def task_1a_simple_decay_chain_populations(output_times, initial_number_of_moles, decay_rate):
     '''
+    Edit this function as part of Activity 1A
     This function should return the populations of two isomers at a number of output times as one decays into the other
     :param output_times: 1-D Numpy array of floats containing the times at which the populations of the isomers should be returned. The first time will always be 0. 
     :param initial_number_of_moles: The initial number of moles of Isomer 1 (the decaying isomer). Isomer 2 (the produced isomer) should have an initial population of 0.
@@ -26,5 +27,7 @@ def task_1a_simple_decay_chain_populations(output_times, initial_number_of_moles
     import src.system_pre_defined
 
     system = src.system_pre_defined.SystemPreDefined([initial_number_of_moles, 0], [decay_rate, 0])
+
+    system.solve_system(output_times)
 
     return(system.y)

@@ -1,4 +1,4 @@
-from system import System
+from src.system import System
 import numpy as np
 
 class SystemPreDefined(System):
