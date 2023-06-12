@@ -13,7 +13,7 @@ class Test_1A(unittest.TestCase):
     relative_tolerance = 1e-2
     absolute_tolerance = 1e-2
 
-    def test_test_non_decaying_parent(self):
+    def test_non_decaying_parent(self):
         '''
         Tests if the correct answer is returned when the parent isomer doesn't decay at all
         '''
@@ -27,7 +27,7 @@ class Test_1A(unittest.TestCase):
         # Compare the results
         np.testing.assert_allclose(program_result, reference_result, self.relative_tolerance)
 
-    def test_test_decaying_parent_slow_decay(self):
+    def test_decaying_parent_slow_decay(self):
         '''
         Tests if the correct answer is returned when the parent isomer decays relatively slowly
         '''
@@ -50,7 +50,7 @@ class Test_1A(unittest.TestCase):
         # Compare the results
         np.testing.assert_allclose(program_result, reference_result, self.relative_tolerance, self.absolute_tolerance)
 
-    def test_test_decaying_parent_fast_decay(self):
+    def test_decaying_parent_fast_decay(self):
         '''
         Tests if the correct answer is returned when the parent isomer decays relatively slowly
         '''
