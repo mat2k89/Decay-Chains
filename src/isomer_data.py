@@ -1,5 +1,5 @@
 import os
-from element_info import ElementInfo
+from src.element_info import ElementInfo
 
 class IsomerData:
     @classmethod

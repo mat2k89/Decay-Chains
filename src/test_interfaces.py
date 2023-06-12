@@ -31,3 +31,18 @@ def task_1a_simple_decay_chain_populations(output_times, initial_number_of_moles
     system.solve_system(output_times)
 
     return(system.y)
+
+def task_1c_endf_file_names_from_nuclear_data(atomic_number, atomic_mass, energy_state):
+    '''
+    Edit this function as part of Activity 1C
+    This function should accept the nuclear data of a isomer and return the corresponding endf file name (without any preceding path)
+    Note, you do not need to check if the file actually exists
+    :param atomic_number: int providing the atomic number 
+    :param atomic_mass: int providing the atomic mass
+    :param energy state: int providing the energy_state_number 
+    :returns: Should be a string containing the endf filename  corresponding to the nuclear data (without any preceding path), e.g. dec-006_C_016
+    '''
+
+    import src.isomer_data
+
+    return(src.isomer_data.IsomerData.filename_from_nuclear_data(atomic_number, atomic_mass, energy_state))
