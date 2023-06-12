@@ -32,7 +32,7 @@ def task_1a_simple_decay_chain_populations(output_times, initial_number_of_moles
 
     return(system.y)
 
-def task_1c_endf_file_names_from_nuclear_data(atomic_number, atomic_mass, energy_state):
+def task_1c_endf_filename_from_nuclear_data(atomic_number, atomic_mass, energy_state):
     '''
     Edit this function as part of Activity 1C
     This function should accept the nuclear data of a isomer and return the corresponding endf file name (without any preceding path)
@@ -46,3 +46,17 @@ def task_1c_endf_file_names_from_nuclear_data(atomic_number, atomic_mass, energy
     import src.isomer_data
 
     return(src.isomer_data.IsomerData.filename_from_nuclear_data(atomic_number, atomic_mass, energy_state))
+
+def task_1c_isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_state):
+    '''
+    Edit this function as part of Activity 1C
+    This function should accept the nuclear data of a isomer and return the corresponding isomer name
+    :param atomic_number: int providing the atomic number 
+    :param atomic_mass: int providing the atomic mass
+    :param energy state: int providing the energy_state_number 
+    :returns: Should be a string containing the isomer name  corresponding to the nuclear data, e.g. C16m1
+    '''
+
+    import src.isomer_data
+
+    return(src.isomer_data.IsomerData.isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_state))

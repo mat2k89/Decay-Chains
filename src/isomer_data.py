@@ -15,7 +15,7 @@ class IsomerData:
     
     @classmethod
     def isomer_name_from_nuclear_data(cls, atomic_number, atomic_mass, energy_state=0):
-        element_name = "{}{}{}".format(ElementInfo.get_element_symbol_from_atomic_number(atomic_number), atomic_mass)
+        element_name = "{}{}".format(ElementInfo.get_element_symbol_from_atomic_number(atomic_number), atomic_mass)
 
         if energy_state:
             element_name += "m{}".format(energy_state)
