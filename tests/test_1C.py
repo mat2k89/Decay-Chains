@@ -80,3 +80,30 @@ class Test_1C(unittest.TestCase):
         isomer_name = interface.task_1c_isomer_name_from_nuclear_data(92, 235, 1)
 
         self.assertEqual(isomer_name, "U235m1")
+
+    def test_nuclear_data_from_isomer_name_short(self):
+        '''
+        Tests if the correct nuclear data is returned when a short isomer name is provided
+        '''
+
+        nuclear_data = interface.task_1c_isomer_nuclear_data_form_name("H1")
+
+        self.assertTupleEqual(nuclear_data, (1, 1, 0))
+
+    def test_nuclear_data_from_isomer_name_long(self):
+        '''
+        Tests if the correct nuclear data is returned when a short isomer name is provided
+        '''
+
+        nuclear_data = interface.task_1c_isomer_nuclear_data_form_name("Th232")
+
+        self.assertTupleEqual(nuclear_data, (90, 232, 0))
+
+    def test_nuclear_data_from_isomer_name_non_zero_energy_state(self):
+        '''
+        Tests if the correct nuclear data is returned when a short isomer name is provided
+        '''
+
+        nuclear_data = interface.task_1c_isomer_nuclear_data_form_name("In98m1")
+
+        self.assertTupleEqual(nuclear_data, (49, 98, 1))

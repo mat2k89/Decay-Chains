@@ -15,38 +15,31 @@ class IsomerData:
     
     @classmethod
     def isomer_name_from_nuclear_data(cls, atomic_number, atomic_mass, energy_state=0):
-        element_name = "{}{}".format(ElementInfo.get_element_symbol_from_atomic_number(atomic_number), atomic_mass)
+        isomer_name = "{}{}".format(ElementInfo.get_element_symbol_from_atomic_number(atomic_number), atomic_mass)
 
         if energy_state:
-            element_name += "m{}".format(energy_state)
+            isomer_name += "m{}".format(energy_state)
 
-        return(element_name)
+        return(isomer_name)
     
     @classmethod
-    def get_nuclear_data_from_name(cls, element_name):
-        for i, char in enumerate(element_name):
+    def get_nuclear_data_from_name(cls, isomer_name):
+        for i, char in enumerate(isomer_name):
             if char.isnumeric():
                 n_char_symbol = i
                 break
 
-        symbol = element_name[:n_char_symbol]
+        symbol = isomer_name[:n_char_symbol]
 
         atomic_number = ElementInfo.get_atomic_number_from_element_symbol(symbol)
 
-        non_zero_group = "m" in element_name[i:]
+        mass_and_group = isomer_name[n_char_symbol:].split("m")
 
-        if non_zero_group:
-            for j, char in enumerate(element_name[n_char_symbol:]):
-                if char.isalpha():
-                    n_char_atomic_mass = j - n_char_symbol
-                    break
-            atomic_mass = int(element_name[n_char_symbol:n_char_symbol + n_char_atomic_mass])
+        atomic_mass = int(mass_and_group[0])
 
-            energy_group = int(element_name[n_char_symbol + n_char_symbol + 1])
-        else:
-            atomic_mass = int(element_name[n_char_symbol:])
-            energy_group = 0
+        try:
+            energy_state = int(mass_and_group[1])
+        except IndexError:
+            energy_state = 0
 
-        return(atomic_number, atomic_mass, energy_group)
-
-
+        return(atomic_number, atomic_mass, energy_state)

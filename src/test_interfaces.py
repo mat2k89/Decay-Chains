@@ -60,3 +60,15 @@ def task_1c_isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_sta
     import src.isomer_data
 
     return(src.isomer_data.IsomerData.isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_state))
+
+def task_1c_isomer_nuclear_data_form_name(isomer_name):
+    '''
+    Edit this function as part of Activity 1C
+    This function should accept the name of an isomer and return its nuclear data
+    :param isomer_name: str containing the name of the nucleus (e.g. "Na24m1") 
+    :returns: Should be a tuple containing the atomic number, atomic mass and energy state number as ints
+    '''
+
+    import src.isomer_data
+
+    return(src.isomer_data.IsomerData.get_nuclear_data_from_name(isomer_name))
