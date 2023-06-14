@@ -97,7 +97,7 @@ Some files (such as ```dec-082_Pb_208.endf```) may also say ```Parent half-life:
 
 #### Obtaining the Decay Mode
 
-The decay mode is contained on the line beginning ```Decay mode:```. In the example above, the ```B-``` tells us Xe$^{135}$ decays by electron emission. There is more complexity to what may appear on this line but, for now, we can restrict ourselves to the following decay modes:
+The decay mode is contained on the line beginning ```Decay mode:```. In the example above, the ```B-``` tells us Xe $^{135}$ decays by electron emission. There is more complexity to what may appear on this line but, for now, we can restrict ourselves to the following decay modes:
 
 | ENDF Decay Code     | Decay Mode | 
 | ----------- | ----------- |
@@ -127,7 +127,11 @@ Hint: this type of problem is often referred to as an "initial value problem" as
 
 Write code able to read the ENDF data files and extract the half-life and decay mode of a given isomer. Given the name of a file (without any path prefix) your code should be able to open the file and find:
 * the half-life and convert it to a decay rate in units of 1/s (noting this will be zero for stable isomers)
-* the decay mode and the effect this has on the atomic number, atomic mass, and energy state number of the decaying isomer
+* the decay mode and so the effect this has on the atomic number, atomic mass, and energy state number of the decaying isomer. If the isomer is stable, the change on the atomic number and aotmic mass should both be considered zero.
+
+For instance:
+* Providing the filename ```dec-002_He_004.endf``` should be found to have a decay rate of 0/s and a corresponding change to atomic number of 0 and atomic mass of 0
+* Providing the filename ```dec-002_He_006.endf``` should be found to have a decay rate of $\frac{\ln{2}}{806.7\textrm{ms}}$ = 0.859/s and a corresponding change to atomic number of -1 and atomic mass of 0
 
 ### Activity 1C
 
