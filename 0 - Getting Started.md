@@ -14,7 +14,7 @@ You are free to use whichever packages you wish to complete this project. Howeve
 * SciPy
 * Matplotlib
 
-You can install these manually, or through the requirements file.
+You can install these manually, or through the requirements file. The sample code also requires Python version 3.10 or above.
 
 ## Setting up your Editor
 
