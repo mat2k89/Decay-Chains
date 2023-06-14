@@ -97,7 +97,7 @@ Some files (such as ```dec-082_Pb_208.endf```) may also say ```Parent half-life:
 
 #### Obtaining the Decay Mode
 
-The decay mode is contained on the line beginning ```Decay mode:```. In the example above, the ```B-``` tells us Xe$^{135}$ decays by electron emission. There is more complexity to what may appear on this line but, for now, we can restrict ourselves to the following decay modes:
+The decay mode is contained on the line beginning ```Decay mode:```. In the example above, the ```B-``` tells us Xe $^{135}$ decays by electron emission. There is more complexity to what may appear on this line but, for now, we can restrict ourselves to the following decay modes:
 
 | ENDF Decay Code     | Decay Mode | 
 | ----------- | ----------- |
@@ -107,7 +107,9 @@ The decay mode is contained on the line beginning ```Decay mode:```. In the exam
 
 ## Activities
 
-For each of the activities below, complete the code in your ```src``` directory in whatever way you wish, organising your code however you think makes most sense. For each activity there are tests in the ```tests``` directory which relate to the activity. For instance ```tests/test_1A``` contains the tests relating to Activity 1A. In order to allow these tests to check your code, you will need to edit the relevant functions in these file ```src/test_intterfaces.py``` so they use your code. This should give you some more idea of what your code should do, as well allowing you to test that your code is working correctly.
+For each of the activities below, complete the code in your ```src``` directory in whatever way you wish, organising your code however you think makes most sense. The tasks are deliberately vague in terms of how the code should be organised, so use whatever structure of functions, classes, modules, etc that you think is best. 
+
+For each activity there are tests in the ```tests``` directory which relate to the activity. For instance ```tests/test_1A``` contains the tests relating to Activity 1A. In order to allow these tests to check your code, you will need to edit the relevant functions in these file ```src/test_intterfaces.py``` so they use your code. This should give you some more idea of what your code should do, as well allowing you to test that your code is working correctly.
 
 As a reminder, these activities can be undertaken in parallel if you're working in a group, so feel free to split up on work on different activities together.
 
@@ -115,17 +117,31 @@ As a reminder, these activities can be undertaken in parallel if you're working 
 
 Write code able to solve differential equations such as those above in the "Nuclear Decay" section. We'll start with the simplest scenario - where Isomer 1 is decaying into Isomer 2, which is stable. Your code should be able to accept an initial number of moles of both isotopes and a decay rate for Isomer 1, then provide the number of moles of each isomer at a set of provided time-steps.
 
+For example:
+* If Isomer 1 has a decay rate of 0/s and an initial population of 10and values are requested at t=0, and t=100s: Isomer 1 should have a population of ```(10, 10)``` and Isomer 2 should have a population of ```(0, 0)```.
+* If Isomer 1 has a deacy rate of 5/s and an initial population of 2 and values are requested at t=0, t=0.5s and t=1s, Isomer 1 should have the populations ```(2, 0.164, 0.0135)``` and Isomer 2 should have the populations ```(0, 1.836, 1.9865)```
+
 Hint: this type of problem is often referred to as an "initial value problem" as you have the initial state of the system and want to calculate the future states of the system by solving the ordinary differential equations forward in time.
 
 ### Activity 1B 
 
 Write code able to read the ENDF data files and extract the half-life and decay mode of a given isomer. Given the name of a file (without any path prefix) your code should be able to open the file and find:
 * the half-life and convert it to a decay rate in units of 1/s (noting this will be zero for stable isomers)
-* the decay mode and the effect this has on the atomic number, atomic mass, and energy state number of the decaying isomer
+* the decay mode and so the effect this has on the atomic number, atomic mass, and energy state number of the decaying isomer. If the isomer is stable, the change on the atomic number and aotmic mass should both be considered zero.
+
+For instance:
+* Providing the filename ```dec-002_He_004.endf``` should be found to have a decay rate of 0/s and a corresponding change to atomic number of 0 and atomic mass of 0
+* Providing the filename ```dec-002_He_006.endf``` should be found to have a decay rate of $\frac{\ln{2}}{806.7\textrm{ms}}$ = 0.859/s and a corresponding change to atomic number of -1 and atomic mass of 0
 
 ### Activity 1C
 
 It's important to be able to make conversions between different bits of data relating to the isomers. Write pieces of code which can:
-* generate the name of the ENDF file name for an isomer from its atomic number, atomic mass, and energy group number,
-* generate the name of an isomer (e.g. ```Xe135``` or ```Na24m1```) from its atomic number, atomic mass, and energy group number,
-* generate the atomic number, atomic mass and energy state number of an isomer given its name.
+* generate the name of the ENDF file name for an isomer from its atomic number, atomic mass, and energy group number,. For instance:
+  * providing an atomic number of 8, atomic mass of 16 and an energy state of 0 should produce ```dec-008_O_016.endf```,
+  * providing an atomic number of 21, atomic mass of 42 and an energy state of 1 should produce ```dec-021_Sc_042m1.endf```.
+* generate the name of an isomer (e.g. ```Xe135``` or ```Na24m1```) from its atomic number, atomic mass, and energy group number. For instance:
+  * providing an atomic number of 50, atomic mass of 120 and an energy state of 0 should produce ```Sn120```,
+  * providing an atomic number of 56, atomic mass of 135 and an energy state of 1 should produce ```Ba135m1.endf```.
+* generate the atomic number, atomic mass and energy state number of an isomer given its name. For instance:
+  * providing a name of ```Au197``` should produce an atomic number of 79, atomic mass of ```197``` and energy state of ```0```
+  * providing a name of ```Cu70m2``` should produce an atomic number of 29, atomic mass of ```70``` and energy state of ```2```
