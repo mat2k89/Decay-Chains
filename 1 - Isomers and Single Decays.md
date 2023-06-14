@@ -107,13 +107,19 @@ The decay mode is contained on the line beginning ```Decay mode:```. In the exam
 
 ## Activities
 
-For each of the activities below, complete the code in your ```src``` directory in whatever way you wish, organising your code however you think makes most sense. For each activity there are tests in the ```tests``` directory which relate to the activity. For instance ```tests/test_1A``` contains the tests relating to Activity 1A. In order to allow these tests to check your code, you will need to edit the relevant functions in these file ```src/test_intterfaces.py``` so they use your code. This should give you some more idea of what your code should do, as well allowing you to test that your code is working correctly.
+For each of the activities below, complete the code in your ```src``` directory in whatever way you wish, organising your code however you think makes most sense. The tasks are deliberately vague in terms of how the code should be organised, so use whatever structure of functions, classes, modules, etc that you think is best. 
+
+For each activity there are tests in the ```tests``` directory which relate to the activity. For instance ```tests/test_1A``` contains the tests relating to Activity 1A. In order to allow these tests to check your code, you will need to edit the relevant functions in these file ```src/test_intterfaces.py``` so they use your code. This should give you some more idea of what your code should do, as well allowing you to test that your code is working correctly.
 
 As a reminder, these activities can be undertaken in parallel if you're working in a group, so feel free to split up on work on different activities together.
 
 ### Activity 1A
 
 Write code able to solve differential equations such as those above in the "Nuclear Decay" section. We'll start with the simplest scenario - where Isomer 1 is decaying into Isomer 2, which is stable. Your code should be able to accept an initial number of moles of both isotopes and a decay rate for Isomer 1, then provide the number of moles of each isomer at a set of provided time-steps.
+
+For example:
+* If Isomer 1 has a decay rate of 0/s and an initial population of 10and values are requested at t=0, and t=100s: Isomer 1 should have a population of ```(10, 10)``` and Isomer 2 should have a population of ```(0, 0)```.
+* If Isomer 1 has a deacy rate of 5/s and an initial population of 2 and values are requested at t=0, t=0.5s and t=1s, Isomer 1 should have the populations ```(2, 0.164, 0.0135)``` and Isomer 2 should have the populations ```(0, 1.836, 1.9865)```
 
 Hint: this type of problem is often referred to as an "initial value problem" as you have the initial state of the system and want to calculate the future states of the system by solving the ordinary differential equations forward in time.
 
