@@ -22,9 +22,11 @@ This resource was developed using VS Code and the settings file contains a numbe
 
 ## Setting Up Tests
 
-This resource provides tests to allow you to test your solutions to various tasks. These tests are stored in the ```tests``` directory and are named to correspond to the tasks they relate to. These tests are written using ```unittest```. Because there are tests to every step of the project, even when you complete an 
+This resource provides tests to allow you to test your solutions to various tasks. These tests are stored in the ```tests``` directory and are named to correspond to the tasks they relate to. These tests are written using ```unittest```. Because there are tests to every step of the project, even when you complete an earlier activity successfully, there will be tests associated with later activities which will fail.
 
 In order to use these, you will need to edit the file ```src/test_interfaces.py``` file. this contains a number of functions which you should edit to utilise the tools you have written as part of the tasks. These functions will be called by the tests when they are run. You should write the code to complete the tasks however you think makes most sense, then work out how to define the functions in ```src/test_interfaces.py``` to interface with your code.
+
+To run the tests, you can use the command ```python -m unittest``` in the main directory of the repository.
 
 Note: as you develop your project, you may wish to add more tests to check your code is behaving how you expect.
 
