@@ -136,6 +136,12 @@ For instance:
 ### Activity 1C
 
 It's important to be able to make conversions between different bits of data relating to the isomers. Write pieces of code which can:
-* generate the name of the ENDF file name for an isomer from its atomic number, atomic mass, and energy group number,
-* generate the name of an isomer (e.g. ```Xe135``` or ```Na24m1```) from its atomic number, atomic mass, and energy group number,
-* generate the atomic number, atomic mass and energy state number of an isomer given its name.
+* generate the name of the ENDF file name for an isomer from its atomic number, atomic mass, and energy group number,. For instance:
+  * providing an atomic number of 8, atomic mass of 16 and an energy state of 0 should produce ```dec-008_O_016.endf```,
+  * providing an atomic number of 21, atomic mass of 42 and an energy state of 1 should produce ```dec-021_Sc_042m1.endf```.
+* generate the name of an isomer (e.g. ```Xe135``` or ```Na24m1```) from its atomic number, atomic mass, and energy group number. For instance:
+  * providing an atomic number of 50, atomic mass of 120 and an energy state of 0 should produce ```Sn120```,
+  * providing an atomic number of 56, atomic mass of 135 and an energy state of 1 should produce ```Ba135m1.endf```.
+* generate the atomic number, atomic mass and energy state number of an isomer given its name. For instance:
+  * providing a name of ```Au197``` should produce an atomic number of 79, atomic mass of ```197``` and energy state of ```0```
+  * providing a name of ```Cu70m2``` should produce an atomic number of 29, atomic mass of ```70``` and energy state of ```2```
