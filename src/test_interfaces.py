@@ -32,6 +32,21 @@ def task_1a_simple_decay_chain_populations(output_times, initial_number_of_moles
 
     return(system.y)
 
+def task_1b_decay_data_from_filename(filepath):
+    '''
+    Edit this function as part of Activity 1B
+    This function should accept the a filename of a file in the endf dataset and return its decay rate and decay mode
+    :param filename: str containing the filename to be read from, with no path prefix (such as "dec-019_K_040.endf") 
+    :returns: Should be a tuple containing the decay rate as a float units of 1/s, and the change to the atomic number and atomic mass caused by the decay as ints (e.g. (1.0, -2, 4) for alpha decay with a decay rate of 1.0/s)
+    '''
+
+    import src.isomer_data
+    import os
+
+    isomer_data = src.isomer_data.IsomerData(os.path.join("decay_data", filepath))
+
+    return(isomer_data.decay_rate, isomer_data.decay_atomic_number_change, isomer_data.decay_atomic_mass_change)
+
 def task_1c_endf_filename_from_nuclear_data(atomic_number, atomic_mass, energy_state):
     '''
     Edit this function as part of Activity 1C
@@ -61,7 +76,7 @@ def task_1c_isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_sta
 
     return(src.isomer_data.IsomerData.isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_state))
 
-def task_1c_isomer_nuclear_data_form_name(isomer_name):
+def task_1c_isomer_nuclear_data_from_name(isomer_name):
     '''
     Edit this function as part of Activity 1C
     This function should accept the name of an isomer and return its nuclear data

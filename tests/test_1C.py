@@ -86,7 +86,7 @@ class Test_1C(unittest.TestCase):
         Tests if the correct nuclear data is returned when a short isomer name is provided
         '''
 
-        nuclear_data = interface.task_1c_isomer_nuclear_data_form_name("H1")
+        nuclear_data = interface.task_1c_isomer_nuclear_data_from_name("H1")
 
         self.assertTupleEqual(nuclear_data, (1, 1, 0))
 
@@ -95,7 +95,7 @@ class Test_1C(unittest.TestCase):
         Tests if the correct nuclear data is returned when a short isomer name is provided
         '''
 
-        nuclear_data = interface.task_1c_isomer_nuclear_data_form_name("Th232")
+        nuclear_data = interface.task_1c_isomer_nuclear_data_from_name("Th232")
 
         self.assertTupleEqual(nuclear_data, (90, 232, 0))
 
@@ -104,6 +104,6 @@ class Test_1C(unittest.TestCase):
         Tests if the correct nuclear data is returned when a short isomer name is provided
         '''
 
-        nuclear_data = interface.task_1c_isomer_nuclear_data_form_name("In98m1")
+        nuclear_data = interface.task_1c_isomer_nuclear_data_from_name("In98m1")
 
         self.assertTupleEqual(nuclear_data, (49, 98, 1))
