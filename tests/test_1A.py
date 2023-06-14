@@ -44,9 +44,6 @@ class Test_1A(unittest.TestCase):
         reference_result[0,:] = initial_value * np.exp(-output_times * decay_rate)
         reference_result[1,:] = initial_value - reference_result[0,:]
 
-        print(reference_result)
-        print(program_result)
-
         # Compare the results
         np.testing.assert_allclose(program_result, reference_result, self.relative_tolerance, self.absolute_tolerance)
 
