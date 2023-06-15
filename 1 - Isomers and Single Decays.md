@@ -22,10 +22,10 @@ Many isomers are unstable and will decay to a lower energy isomer. This decay wi
 
 | Decay Type      | Change to Atomic Number | Change to Atomic Mass |
 | ----------- | ----------- | -- |
-| Alpha Emission   | -4  | -2 |
+| Alpha Emission   | -2  | -4 |
 | Beta emission      | +1  | 0  |
 | Gamma Emission   | 0  | 0 |
-| Electron capture   | 0  | -1 |
+| Electron capture   | -1  | 0 |
 
 
 For each individual nuclei, it cannot be predicted exactly when it will decay. However, we may observe a large collection of isomers measure the timescales over which they decay occurs and observe which particles are emitted. Xenon-135 (written as Xe $^{135}$ ) decays via electron emission. Xenon has an atomic number of 54 so, consulting the table above, we see that it will turn into a nucleus with an atomic number of 55 and its atomic mass will remain unchanged at 135. This means a nucleus of Xe $^{135}$ will decay to form a nucleus of Cs $^{135}$ . 
