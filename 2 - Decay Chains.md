@@ -6,4 +6,13 @@ So far, we have dealt with the case where one isomer decays to another and this 
 
 ## Constructing a Decay Chain using ENDF
 
-We may use the ENDF dataset to construct a dataseries. For instance, if we examine ```dec-027_Co_065.endf``` we find Co $^{65}$ decays via beta decay with a half-life of 1.16s (and so a decay rate of 0.596/s). Because it beta decays, we know it will change into a new isomer with the same atomic mass but an atomic number one higher. Nickel has an atomic number one higher than Cobalt, so we know it will decay to Ni $^{65}$. We may then examine ```dec-028_Ni_065.endf``` to find it decays via beta dcay with a half-life of 2.52hours (and so a decay rate of 7.65 $\times 10^{-5}$ /s). Because it decays via beta decay, we know it will change into a new isomer with the same atomic mass but an atomic number one higher. Copper has an atomic mass one higher than Nickel, so we know it will decay to Cu $^{65}$. When we examine ```dec-029_Cu_065``` we see that this isomer is stable so we know this is the end of the decay chain.
+We may use the ENDF dataset to construct a dataseries. For instance, if we examine ```dec-027_Co_065.endf``` we find Co $^{65}$ decays via beta decay with a half-life of 1.16s (and so a decay rate of 0.596/s). Because it beta decays, we know it will change into a new isomer with the same atomic mass but an atomic number one higher. Nickel has an atomic number one higher than Cobalt, so we know it will decay to Ni $^{65}$. We may then examine ```dec-028_Ni_065.endf``` to find it decays via beta dcay with a half-life of 2.52hours (and so a decay rate of 7.65 $\times 10^{-5}$ /s). Because it decays via beta decay, we know it will change into a new isomer with the same atomic mass but an atomic number one higher. Copper has an atomic mass one higher than Nickel, so we know it will decay to Cu $^{65}$. When we examine ```dec-029_Cu_065``` we see that this isomer is stable so we know this is the end of the decay chain. This means we may construct the following system of equations to describe a group of isomers containing purely Co $^{65}$:
+
+$$ \eqalign{
+\frac{\mathrm{d}n_{Co65}}{\mathrm{d}t} &= - \lambda_{Co65} n_{Co65},\\
+\frac{\mathrm{d}n_{Ni65}}{\mathrm{d}t} &= \lambda_{Co65} n_{Co65} n_{Co65} - \lambda_{Ni65} n_{Ni65},\\
+\frac{\mathrm{d}n_{Cu65}}{\mathrm{d}t} &=  \lambda_{Ni65} n_{Ni65},
+}
+$$
+
+where $n_{Co65}$ is the number of moles of Co $^{65}$ present, $n_{Ni65}$ is the number of moles of Ni $^{65}$ present, $n_{Cu65}$ is the number of moles of Cu $^{65}$ present, $t$ is time, \lambda_{Co65} is the decay rate of Co $^{65}$, and $\lambda_{Ni65}$ is the decay rate of NI $^{65}$ .
