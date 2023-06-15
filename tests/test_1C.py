@@ -1,6 +1,5 @@
 import unittest
 import src.test_interfaces as interface
-import numpy as np
 
 class Test_1C(unittest.TestCase):
     '''
