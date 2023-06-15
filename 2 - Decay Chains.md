@@ -16,3 +16,13 @@ $$ \eqalign{
 $$
 
 where $n_{Co65}$ is the number of moles of Co $^{65}$ present, $n_{Ni65}$ is the number of moles of Ni $^{65}$ present, $n_{Cu65}$ is the number of moles of Cu $^{65}$ present, $t$ is time, \lambda_{Co65} is the decay rate of Co $^{65}$, and $\lambda_{Ni65}$ is the decay rate of NI $^{65}$ .
+
+## Activity 2
+
+Write a piece of code which receives the name of an isotope (e.g. ```Co65```), the number of moles of this isotope present at $t$ =0 and a set of output times (you may assume the first output time is always 0s). Your code should calculate the number of moles of this isomer and any isomers created as part of this isomer's decay chain at the specified output times. 
+
+Tests are provided for this activity - edit the relevat functions in ```test_interfaces.py``` to make sure they can interact with you code. It is recommended that you use the data structuresa nd methods you think are best suited to solve the problem to produce your code, then extract the relevant data in ```test_interfaces.py```, rather than letting the format of the funcitons in ```test_interfaces.py``` dictate how you structure your code.
+
+Tip: You should be able to adapt the code produced in Activity 1 to produce this code. When adapting the code, it would be sensible to ake sure the tests from Activity 1 are still applied to your code, to ensure any changes you make do not break your code. This may require editing the parts of the file ```test_interfaces.py``` relatig to Activity 1.
+
+Tip 2: You will need to decide how to read the relevant files to obtain the necessary data and how to construct and solve the resultat equations.
