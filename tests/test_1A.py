@@ -18,15 +18,17 @@ class Test_1A(unittest.TestCase):
         Tests if the correct answer is returned when the parent isomer doesn't decay at all
         '''
         # Calculate the result from the supplied program
-        program_result = interface.task_1a_simple_decay_chain_populations(list(range(0, 100, 1)), 1, 0)
+        output_times = list(range(0, 100, 1))
+        program_result = interface.task_1a_simple_decay_chain_populations(output_times, 1, 0)
 
         # Calculate the reference result
-        reference_result1 = [1] * 100
-        reference_result2 = [0] * 100
+        reference_result1 = [1.0] * 100
+        reference_result2 = [0.0] * 100
 
         # Compare the results
-        self.assertListEqual(reference_result1, list(program_result[0]))
-        self.assertListEqual(reference_result2, list(program_result[1]))
+        for time, reference_value1, reference_value2, program_value1, program_value2 in zip(output_times, reference_result1, reference_result2, program_result[0], program_result[1]):
+            self.assertAlmostEqual(reference_value1, program_value1, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 1 at t={}s when Isomer 1 was a stable isomer".format(reference_value1, program_value1, time))
+            self.assertAlmostEqual(reference_value2, program_value2, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 2 at t={}s when Isomer 1 was a stable isomer".format(reference_value2, program_value2, time))
 
     def test_decaying_parent_slow_decay(self):
         '''
@@ -45,9 +47,9 @@ class Test_1A(unittest.TestCase):
         reference_result2 = list(map(lambda pop1 : initial_value - pop1, reference_result1))
 
         # Compare the results
-        for i in range(len(output_times)):
-            self.assertAlmostEqual(reference_result1[i], program_result[0][i])
-            self.assertAlmostEqual(reference_result2[i], program_result[1][i])
+        for time, reference_value1, reference_value2, program_value1, program_value2 in zip(output_times, reference_result1, reference_result2, program_result[0], program_result[1]):
+            self.assertAlmostEqual(reference_value1, program_value1, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 1 at t={}s when Isomer 1 decays slowly".format(reference_value1, program_value1, time))
+            self.assertAlmostEqual(reference_value2, program_value2, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 2 at t={}s when Isomer 1 decays slowly".format(reference_value2, program_value2, time))
 
     def test_decaying_parent_fast_decay(self):
         '''
@@ -69,6 +71,6 @@ class Test_1A(unittest.TestCase):
         reference_result2 = list(map(lambda pop1 : initial_value - pop1, reference_result1))
 
         # Compare the results
-        for i in range(len(output_times)):
-            self.assertAlmostEqual(reference_result1[i], program_result[0][i])
-            self.assertAlmostEqual(reference_result2[i], program_result[1][i])
+        for time, reference_value1, reference_value2, program_value1, program_value2 in zip(output_times, reference_result1, reference_result2, program_result[0], program_result[1]):
+            self.assertAlmostEqual(reference_value1, program_value1, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 1 at t={}s when Isomer 1 decays quickly".format(reference_value1, program_value1, time))
+            self.assertAlmostEqual(reference_value2, program_value2, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 2 at t={}s when Isomer 1 decays quickly".format(reference_value2, program_value2, time))
