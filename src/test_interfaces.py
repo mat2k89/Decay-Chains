@@ -3,9 +3,6 @@ Each test should utilise aspects of your code to complete the specified task.
 These functions will be called by tests in the test suite to ensure you code is working properly.
 '''
 
-
-
-
 def task_0_always_return_0():
     '''This function should always return the value zero'''
     return(0)
@@ -22,7 +19,7 @@ def task_1a_simple_decay_chain_populations(output_times, initial_number_of_moles
     :param output_times: 1-D Numpy array of floats containing the times at which the populations of the isomers should be returned. The first time will always be 0. 
     :param initial_number_of_moles: The initial number of moles of Isomer 1 (the decaying isomer). Isomer 2 (the produced isomer) should have an initial population of 0.
     :param decay_rate: The decay rate of the decaying isomer in units of 1/s.
-    :returns: Should be a 2-D Numpy array of size (2, n) where n is the number of output times. The value with index [0, 0] is the population of Isomer 1 at t=0 and [1,n] is the number of moles of Isomer 2 at the end of the simulation.
+    :returns: Should return two sequences (e.g. lists, Tuples, 1D Numpy arrays) of length n where n is the number of output times. The first sequence contains the populations of Isomer 1 as a function of time, the second contains he populations of Isomer 1 as a function of time. Ine ach sequence, the value with index [0] in each array is the population the isomer at t=0 and the value with index [n] is the number of moles of the isomer at the end of the simulation.
     '''
     import src.system_pre_defined
 
@@ -30,7 +27,7 @@ def task_1a_simple_decay_chain_populations(output_times, initial_number_of_moles
 
     system.solve_system(output_times)
 
-    return(system.y)
+    return(system.y[0,:], system.y[1,:])
 
 def task_1b_decay_data_from_filename(filepath):
     '''
