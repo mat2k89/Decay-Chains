@@ -96,7 +96,7 @@ class IsomerData:
         match decay_mode:
             case "A":
                 self._decay_atomic_number_change = -2
-                self._decay_atomic_mass_change = -2
+                self._decay_atomic_mass_change = -4
             case "B-":
                 self._decay_atomic_number_change = 1
                 self._decay_atomic_mass_change = 0
