@@ -8,10 +8,9 @@ class Test_1A(unittest.TestCase):
     '''
     Tests the code produced for exercise 1B
     '''
-    # The comparison tolerances to be used for these tests
-    # They are deliberately quite loose, to keep the focus off technicalities of numerical accuracy of ivp solvers
-    relative_tolerance = 1e-2
-    absolute_tolerance = 1e-2
+    # The comparison tolerance to be used for these tests
+    # It is deliberately loose, to keep the focus off technicalities of numerical accuracy of ivp solvers
+    places = 2
 
     def test_non_decaying_parent(self):
         '''
@@ -27,8 +26,8 @@ class Test_1A(unittest.TestCase):
 
         # Compare the results
         for time, reference_value1, reference_value2, program_value1, program_value2 in zip(output_times, reference_result1, reference_result2, program_result[0], program_result[1]):
-            self.assertAlmostEqual(reference_value1, program_value1, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 1 at t={}s when Isomer 1 was a stable isomer".format(reference_value1, program_value1, time))
-            self.assertAlmostEqual(reference_value2, program_value2, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 2 at t={}s when Isomer 1 was a stable isomer".format(reference_value2, program_value2, time))
+            self.assertAlmostEqual(reference_value1, program_value1, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 1 at t={}s when Isomer 1 was a stable isomer".format(reference_value1, program_value1, time), places=self.places)
+            self.assertAlmostEqual(reference_value2, program_value2, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 2 at t={}s when Isomer 1 was a stable isomer".format(reference_value2, program_value2, time), places=self.places)
 
     def test_decaying_parent_slow_decay(self):
         '''
@@ -48,15 +47,15 @@ class Test_1A(unittest.TestCase):
 
         # Compare the results
         for time, reference_value1, reference_value2, program_value1, program_value2 in zip(output_times, reference_result1, reference_result2, program_result[0], program_result[1]):
-            self.assertAlmostEqual(reference_value1, program_value1, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 1 at t={}s when Isomer 1 decays slowly".format(reference_value1, program_value1, time))
-            self.assertAlmostEqual(reference_value2, program_value2, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 2 at t={}s when Isomer 1 decays slowly".format(reference_value2, program_value2, time))
+            self.assertAlmostEqual(reference_value1, program_value1, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 1 at t={}s when Isomer 1 decays slowly".format(reference_value1, program_value1, time), places=self.places)
+            self.assertAlmostEqual(reference_value2, program_value2, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 2 at t={}s when Isomer 1 decays slowly".format(reference_value2, program_value2, time), places=self.places)
 
     def test_decaying_parent_fast_decay(self):
         '''
         Tests if the correct answer is returned when the parent isomer decays relatively slowly
         '''
         # Calculate test parameters
-        output_times = np.arange(0, 50, 5)
+        output_times = [5 * i for i in range(0, 10)]
         decay_rate = 1
         initial_value = 100
 
@@ -72,5 +71,5 @@ class Test_1A(unittest.TestCase):
 
         # Compare the results
         for time, reference_value1, reference_value2, program_value1, program_value2 in zip(output_times, reference_result1, reference_result2, program_result[0], program_result[1]):
-            self.assertAlmostEqual(reference_value1, program_value1, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 1 at t={}s when Isomer 1 decays quickly".format(reference_value1, program_value1, time))
-            self.assertAlmostEqual(reference_value2, program_value2, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 2 at t={}s when Isomer 1 decays quickly".format(reference_value2, program_value2, time))
+            self.assertAlmostEqual(reference_value1, program_value1, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 1 at t={}s when Isomer 1 decays quickly".format(reference_value1, program_value1, time), places=self.places)
+            self.assertAlmostEqual(reference_value2, program_value2, msg="There was a difference between the reference population ({}) and your population ({}) of  Isomer 2 at t={}s when Isomer 1 decays quickly".format(reference_value2, program_value2, time), places=self.places)
