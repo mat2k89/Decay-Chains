@@ -170,7 +170,7 @@ class IsomerData:
     
     @property
     def atomic_mass(self):
-        return(self._atomic_number)
+        return(self._atomic_mass)
     
     @property
     def energy_state(self):

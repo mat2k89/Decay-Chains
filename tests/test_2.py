@@ -1,5 +1,6 @@
 import unittest
 import src.test_interfaces as interface
+import math
 
 class Test_2(unittest.TestCase):
     '''
@@ -48,10 +49,17 @@ class Test_2(unittest.TestCase):
         initial_isomer_name = "Ni65"
         initial_isomer_population = 10
         output_times = [i * 1000 for i in range(50)]
+        decay_rate = 7.649040536823748e-05
 
         code_results = interface.task_2_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times)
 
-        reference_results = {"H1":[1.0] * 100}
+        # Calculate the reference results
+        reference_results = {}
+        reference_results["Ni65"] = list(map(lambda t : initial_isomer_population * math.exp(-t * decay_rate), output_times))
+        reference_results["Cu65"] = list(map(lambda pop1 : initial_isomer_population - pop1, reference_results["Ni65"]))
+
+        print(reference_results)
+        print(code_results)
 
         self.compare_results(code_results, reference_results, output_times)
 

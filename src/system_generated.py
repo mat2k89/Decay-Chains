@@ -31,11 +31,13 @@ class SystemGenerated(System):
         for isomer_name, isomer_data in self._isomer_data.items():
             daughter_isomer_name = isomer_data.daughter_name
 
-            try:
-                self._isomer_data[isomer_name]
-            except KeyError:
-                daughter_isomer_data = IsomerData.instance_from_isomer_name(daughter_isomer_name)
-                self._isomer_data[daughter_isomer_name] = daughter_isomer_data
+            new_isomer_data = {}
+
+            if not (daughter_isomer_name in self._isomer_data or daughter_isomer_name in new_isomer_data):                
+                daughter_isomer_data = IsomerData(daughter_isomer_name, self._data_path_prefix)
+                new_isomer_data[daughter_isomer_name] = daughter_isomer_data
+
+        self._isomer_data = self._isomer_data | new_isomer_data
 
     def _get_isomer_index(self, isomer_name):
         for i, stored_name in enumerate(self._isomer_data):
@@ -61,8 +63,5 @@ class SystemGenerated(System):
             daughter_name = isomer_data.daughter_name
             daughter_index = self._get_isomer_index(daughter_name)
 
-            self._matrix[parent_index, parent_index] = decay_rate
+            self._matrix[parent_index, parent_index] = -decay_rate
             self._matrix[daughter_index, parent_index] = decay_rate
-
-
-
