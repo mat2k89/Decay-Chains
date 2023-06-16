@@ -40,7 +40,7 @@ def task_1b_decay_data_from_filename(filepath):
     import src.isomer_data
     import os
 
-    isomer_data = src.isomer_data.IsomerData(os.path.join("decay_data", filepath))
+    isomer_data = src.isomer_data.IsomerData.instance_from_filename(filepath, "decay_data")
 
     return(isomer_data.decay_rate, isomer_data.decay_atomic_number_change, isomer_data.decay_atomic_mass_change)
 
@@ -83,4 +83,20 @@ def task_1c_isomer_nuclear_data_from_name(isomer_name):
 
     import src.isomer_data
 
-    return(src.isomer_data.IsomerData.get_nuclear_data_from_name(isomer_name))
+    return(src.isomer_data.IsomerData.nuclear_data_from_name(isomer_name))
+
+def task_2_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times):
+    '''
+    '''
+
+    import src.system_generated
+
+    initial_populations = {initial_isomer_name: initial_isomer_population}
+
+    system = src.system_generated.SystemGenerated(initial_populations, "decay_data")
+
+    system.solve_system(output_times)
+
+    results = {isomer_name: system.y[i,:] for i, isomer_name in enumerate(system.isomer_names)}
+
+    return(results)
