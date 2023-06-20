@@ -4,7 +4,7 @@ class ElementInfo:
     @classmethod
     def get_atomic_number_from_element_symbol(cls, element_symbol):
         return cls.atomic_numbers[element_symbol]
-    
+
     @classmethod
     def get_element_symbol_from_atomic_number(cls, atomic_number):
         for symbol, number in cls.atomic_numbers.items():
