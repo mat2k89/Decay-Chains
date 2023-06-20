@@ -8,23 +8,25 @@ class Test_2(unittest.TestCase):
     '''
     places = 2
 
-    def compare_results(self, code_result, reference_result, output_times):
+    def compare_results(self, code_result, reference_result, output_times, initial_isomer_name, initial_isomer_population):
         '''
         Used to compare the results of the code being tested and the corresponding sample results
         '''
 
+        test_description = "In this test, there were initially {} moles of {} at t=0.".format(initial_isomer_population, initial_isomer_name)
+
         # Check all reference isomer names are in the code results
         for reference_isomer_name in reference_result:
-            self.assertIn(reference_isomer_name, code_result.keys(), msg="The isomer name {} should have been in the results, but it wasn't".format(reference_isomer_name))
+            self.assertIn(reference_isomer_name, code_result.keys(), msg="{} The isomer name {} should have been in the results, but it wasn't".format(test_description, reference_isomer_name))
 
         # Check all code isomer names are in the code results
         for code_isomer_name in code_result:
-            self.assertIn(code_isomer_name, reference_result.keys(), msg="The isomer name {} appeared in the results, but it shouldn't be there".format(code_isomer_name))
+            self.assertIn(code_isomer_name, reference_result.keys(), msg="{} The isomer name {} appeared in the results, but it shouldn't be there".format(test_description, code_isomer_name))
 
         # Now we know the same isomer names are in each, tests the results of each isomer
         for isomer_name in code_result:
             for code_value, reference_value, time in zip(code_result[isomer_name], reference_result[isomer_name], output_times):
-                self.assertAlmostEqual(code_value, reference_value, self.places, msg="When compared the population of the isomer {} at t={}s, the code had a value of {} but the reference value was {}".format(isomer_name, time, code_value, reference_value))
+                self.assertAlmostEqual(code_value, reference_value, self.places, msg="{} When comparing the population of the isomer {} at t={}s, the code had a value of {} but the reference value was {}".format(test_description, isomer_name, time, code_value, reference_value))
 
     def test_stable(self):
         '''
@@ -39,7 +41,7 @@ class Test_2(unittest.TestCase):
 
         reference_results = {"H1":[1.0] * 100}
 
-        self.compare_results(code_results, reference_results, output_times)
+        self.compare_results(code_results, reference_results, output_times, initial_isomer_name, initial_isomer_population)
 
     def test_short_chain(self):
         '''
@@ -61,7 +63,7 @@ class Test_2(unittest.TestCase):
         print(reference_results)
         print(code_results)
 
-        self.compare_results(code_results, reference_results, output_times)
+        self.compare_results(code_results, reference_results, output_times, initial_isomer_name, initial_isomer_population)
 
     def test_long_chain(self):
         '''
@@ -89,8 +91,5 @@ class Test_2(unittest.TestCase):
         print(reference_results)
         print(code_results)
 
-        self.compare_results(code_results, reference_results, output_times)
+        self.compare_results(code_results, reference_results, output_times, initial_isomer_name, initial_isomer_population)
 
-
-
-        
