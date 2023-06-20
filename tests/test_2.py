@@ -63,6 +63,34 @@ class Test_2(unittest.TestCase):
 
         self.compare_results(code_results, reference_results, output_times)
 
+    def test_long_chain(self):
+        '''
+        Tests the correct answer is returned when an isomer which decays twice before becoming a stable isomer is provided
+        '''
+
+        initial_isomer_name = "Pd98"
+        initial_isomer_population = 100
+        output_times = list(range(0,1000, 100))
+
+        code_results = interface.task_2_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times)
+
+        print(code_results)
+
+        # Calculate the reference results using Analytic Results
+        reference_results = {}
+        decay_rate_Pd = math.log(2) / (17.7 * 60)
+        decay_rate_Rh  = math.log(2) / (8.72 * 60)
+        reference_results["Pd98"] = list(map(lambda t : initial_isomer_population * math.exp(-t * decay_rate_Pd), output_times))
+
+        reference_results["Rh98"] = list(map(lambda t : initial_isomer_population * decay_rate_Pd * (math.exp(-decay_rate_Pd * t) - math.exp(-decay_rate_Rh * t)) / (decay_rate_Rh - decay_rate_Pd), output_times))
+
+        reference_results["Ru98"] = list(map(lambda pops_Pd_Rh : initial_isomer_population - pops_Pd_Rh[0] - pops_Pd_Rh[1], zip(reference_results["Pd98"], reference_results["Rh98"])))
+
+        print(reference_results)
+        print(code_results)
+
+        self.compare_results(code_results, reference_results, output_times)
+
 
 
         
