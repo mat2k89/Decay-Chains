@@ -30,7 +30,7 @@ class System:
 
         t_span = np.array((t_eval[0], t_eval[-1]))
 
-        self_results = self._results = scipy.integrate.solve_ivp(derivatives, t_span, self._initial_conditions, t_eval=t_eval)
+        self._results = scipy.integrate.solve_ivp(derivatives, t_span, self._initial_conditions, t_eval=t_eval)
 
 
 
