@@ -9,9 +9,7 @@ class SystemGenerated(System):
         self._data_path_prefix = data_path_prefix
 
         for isomer_name in initial_populations:
-            self._add_isomer_data(isomer_name)
-
-        self._populate_daughter_isomer_data()
+            self._add_isomer_and_daughter_data(isomer_name)
 
         self._isomer_names = np.array(tuple(self._isomer_data.keys()))
 
@@ -19,25 +17,17 @@ class SystemGenerated(System):
 
         self._setup_matrix()
 
-    def _add_isomer_data(self, isomer_name):
-        isomer_data = IsomerData(isomer_name, self._data_path_prefix)
-
+    def _add_isomer_and_daughter_data(self, isomer_name):
+        
         try:
             self._isomer_data[isomer_name]
+            return
         except KeyError:
+            isomer_data = IsomerData(isomer_name, self._data_path_prefix)
             self._isomer_data[isomer_name] = isomer_data
-
-    def _populate_daughter_isomer_data(self):
-        for isomer_name, isomer_data in self._isomer_data.items():
-            daughter_isomer_name = isomer_data.daughter_name
-
-            new_isomer_data = {}
-
-            if not (daughter_isomer_name in self._isomer_data or daughter_isomer_name in new_isomer_data):                
-                daughter_isomer_data = IsomerData(daughter_isomer_name, self._data_path_prefix)
-                new_isomer_data[daughter_isomer_name] = daughter_isomer_data
-
-        self._isomer_data = self._isomer_data | new_isomer_data
+            if not isomer_data.stable:
+                daughter_isomer_name = isomer_data.daughter_name
+                self._add_isomer_and_daughter_data(daughter_isomer_name)
 
     def _get_isomer_index(self, isomer_name):
         for i, stored_name in enumerate(self._isomer_data):

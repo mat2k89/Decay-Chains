@@ -103,11 +103,13 @@ class IsomerData:
             raise ValueError("No decay rate in this file")
         
         if decay_rate_word == "STABLE":
+            self._stable = True
             self._decay_rate = 0.0
             self._decay_atomic_number_change = 0
             self._decay_atomic_mass_change = 0
             return
         
+        self._stable = False
         self._decay_rate = math.log(2) / float(decay_rate_word)
         match decay_rate_unit:
             case "PS":
@@ -151,6 +153,10 @@ class IsomerData:
                 self._decay_atomic_mass_change = 0
             case _:
                 raise ValueError("Unknown decay mode '{}'".format(decay_mode))
+
+    @property
+    def stable(self):
+        return(self._stable)
 
     @property
     def decay_rate(self):
