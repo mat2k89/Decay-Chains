@@ -2,9 +2,9 @@ import unittest
 import src.test_interfaces as interface
 import math
 
-class Test_2(unittest.TestCase):
+class Test_2A(unittest.TestCase):
     '''
-    Tests the code produced for Activity 2
+    Tests the code produced for Activity 2A
     '''
     places = 2
 
