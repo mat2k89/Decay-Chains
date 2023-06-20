@@ -31,3 +31,7 @@ $$
 where $P_{Xi}(t)$ is the power released from Isomer $X$ through the release of particle $i$, $N_{X}(t)$ is the number of moles of Isomer $X$ at time $t$, $N_{A}$ is Avogadro's Constant, $\chi_{Xi}$ is the energy released in particle $i$ when a nucleus of Isomer $X$ decays (this may be found from the endf files), and $\lambda_{X}$ is the decay rate of Isomer $X$.
 
 Adapt your code so it can output the power released from the system in each particle as a function of time. For instance, your code should be able to say what power is released in Gamma rays, alpha particles, neutrinos, etc as a function of time.
+
+Activity 3E - Saving Results
+
+Your code can produce results, but these are currently only output through a figure. Saving the exact values could be useful for a number of reasons. Write some code which will save the results of a simulation to a file. Consider what type of file format would be most suitable and where this file should be saved.
