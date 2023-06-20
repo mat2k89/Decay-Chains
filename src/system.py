@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import scipy.integrate
 
 class System:
@@ -31,6 +32,14 @@ class System:
         t_span = np.array((t_eval[0], t_eval[-1]))
 
         self._results = scipy.integrate.solve_ivp(derivatives, t_span, self._initial_conditions, t_eval=t_eval)
+
+    def plot_results(self):
+        plt.plot(self.t, self.y.transpose(), label=self.isomer_names)
+
+        plt.xlabel("Time(s)")
+        plt.ylabel("Number of Moles")
+        plt.legend()
+        plt.show()
 
 
 
