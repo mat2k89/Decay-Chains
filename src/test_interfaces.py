@@ -3,14 +3,16 @@ Each test should utilise aspects of your code to complete the specified task.
 These functions will be called by tests in the test suite to ensure you code is working properly.
 '''
 
+
 def task_0_always_return_0():
     '''This function should always return the value zero'''
-    return(0)
+    return 0
 
 
 def task_0_addition(a, b):
     '''This function should return the sum of the parameters a and b'''
-    return(a + b)
+    return a + b
+
 
 def task_1a_simple_decay_chain_populations(output_times, initial_number_of_moles, decay_rate):
     '''
@@ -27,7 +29,8 @@ def task_1a_simple_decay_chain_populations(output_times, initial_number_of_moles
 
     system.solve_system(output_times)
 
-    return(system.y[0,:], system.y[1,:])
+    return system.y[0, :], system.y[1, :]
+
 
 def task_1b_decay_data_from_filename(filepath):
     '''
@@ -38,11 +41,11 @@ def task_1b_decay_data_from_filename(filepath):
     '''
 
     import src.isomer_data
-    import os
 
     isomer_data = src.isomer_data.IsomerData.instance_from_filename(filepath, "decay_data")
 
-    return(isomer_data.decay_rate, isomer_data.decay_atomic_number_change, isomer_data.decay_atomic_mass_change)
+    return isomer_data.decay_rate, isomer_data.decay_atomic_number_change, isomer_data.decay_atomic_mass_change
+
 
 def task_1c_endf_filename_from_nuclear_data(atomic_number, atomic_mass, energy_state):
     '''
@@ -57,21 +60,23 @@ def task_1c_endf_filename_from_nuclear_data(atomic_number, atomic_mass, energy_s
 
     import src.isomer_data
 
-    return(src.isomer_data.IsomerData.filename_from_nuclear_data(atomic_number, atomic_mass, energy_state))
+    return src.isomer_data.IsomerData.filename_from_nuclear_data(atomic_number, atomic_mass, energy_state)
+
 
 def task_1c_isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_state):
     '''
     Edit this function as part of Activity 1C
     This function should accept the nuclear data of a isomer and return the corresponding isomer name
-    :param atomic_number: int providing the atomic number 
+    :param atomic_number: int providing the atomic number
     :param atomic_mass: int providing the atomic mass
-    :param energy state: int providing the energy_state_number 
+    :param energy state: int providing the energy_state_number
     :returns: Should be a string containing the isomer name  corresponding to the nuclear data, e.g. C16m1
     '''
 
     import src.isomer_data
 
-    return(src.isomer_data.IsomerData.isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_state))
+    return src.isomer_data.IsomerData.isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_state)
+
 
 def task_1c_isomer_nuclear_data_from_name(isomer_name):
     '''
@@ -83,7 +88,8 @@ def task_1c_isomer_nuclear_data_from_name(isomer_name):
 
     import src.isomer_data
 
-    return(src.isomer_data.IsomerData.nuclear_data_from_name(isomer_name))
+    return src.isomer_data.IsomerData.nuclear_data_from_name(isomer_name)
+
 
 def task_2_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times):
     '''
@@ -97,6 +103,6 @@ def task_2_isomer_chain_from_initial_population(initial_isomer_name, initial_iso
 
     system.solve_system(output_times)
 
-    results = {isomer_name: system.y[i,:] for i, isomer_name in enumerate(system.isomer_names)}
+    results = {isomer_name: system.y[i, :] for i, isomer_name in enumerate(system.isomer_names)}
 
-    return(results)
+    return results

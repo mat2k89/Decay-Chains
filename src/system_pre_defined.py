@@ -1,11 +1,12 @@
 from src.system import System
 import numpy as np
 
+
 class SystemPreDefined(System):
-    def __init__(self, initial_conditions, decay_rates, isomer_names = None):
+    def __init__(self, initial_conditions, decay_rates, isomer_names=None):
         if len(initial_conditions) != len(decay_rates):
             raise ValueError("There should be the same number of initial conditions as decay rates")
-        
+
         decay_rates = np.array(decay_rates)
         n_isomer = len(decay_rates)
 
@@ -15,12 +16,12 @@ class SystemPreDefined(System):
 
         if not isinstance(initial_conditions, (list, tuple, np.ndarray)):
             raise TypeError("When providing simple decay rates, the initial conditions must be provided as a list, tuple of Numpy array")
-        
+
         initial_conditions = np.array(initial_conditions)
 
         if initial_conditions.ndim != 1:
             raise ValueError("When providing simple decay rates, the initial conditions must be one-dimensional")
-        
+
         self._initial_conditions = initial_conditions
 
         if isomer_names:

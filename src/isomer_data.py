@@ -2,6 +2,7 @@ import os
 import math
 from src.element_info import ElementInfo
 
+
 class IsomerData:
     @classmethod
     def filename_from_nuclear_data(cls, atomic_number, atomic_mass, energy_state=0):
@@ -12,8 +13,8 @@ class IsomerData:
 
         filename += ".endf"
 
-        return(filename)
-    
+        return filename
+
     @staticmethod
     def isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_state=0):
         isomer_name = "{}{}".format(ElementInfo.get_element_symbol_from_atomic_number(atomic_number), atomic_mass)
@@ -21,8 +22,8 @@ class IsomerData:
         if energy_state:
             isomer_name += "m{}".format(energy_state)
 
-        return(isomer_name)
-    
+        return isomer_name
+
     @classmethod
     def nuclear_data_from_name(cls, isomer_name):
         for i, char in enumerate(isomer_name):
@@ -43,15 +44,15 @@ class IsomerData:
         except IndexError:
             energy_state = 0
 
-        return(atomic_number, atomic_mass, energy_state)
-    
+        return atomic_number, atomic_mass, energy_state
+
     @classmethod
     def filename_from_isomer_name(cls, isomer_name):
         nuclear_data = cls.nuclear_data_from_name(isomer_name)
 
         filename = cls.filename_from_nuclear_data(*nuclear_data)
 
-        return(filename)
+        return filename
 
     @staticmethod
     def nuclear_data_from_filename(filename):
@@ -63,7 +64,7 @@ class IsomerData:
         except IndexError:
             energy_state = 0
 
-        return(atomic_number, atomic_mass, energy_state)
+        return atomic_number, atomic_mass, energy_state
 
     @classmethod 
     def isomer_name_from_filename(cls, filename):
@@ -71,14 +72,14 @@ class IsomerData:
 
         isomer_name = cls.isomer_name_from_nuclear_data(*nuclear_data)
 
-        return(isomer_name)
+        return isomer_name
 
     @classmethod
     def instance_from_filename(cls, filename, directory_prefix=None):
         isomer_name = cls.isomer_name_from_filename(filename)
 
-        return(cls(isomer_name, directory_prefix))
-    
+        return cls(isomer_name, directory_prefix)
+
     def __init__(self, isomer_name, data_directory_prefix=None):
         self._isomer_name = isomer_name
         self._atomic_number, self._atomic_mass, self._energy_state = self.nuclear_data_from_name(isomer_name)
@@ -91,9 +92,9 @@ class IsomerData:
             filepath = filename
 
         with open(filepath) as f:
-            lines  = f.readlines()
+            lines = f.readlines()
 
-        #Find the decay rate
+        # Find the decay rate
         for line in lines:
             if line[:16] == "Parent half-life":
                 decay_rate_word = line.split(" ")[2]
@@ -101,14 +102,14 @@ class IsomerData:
                 break
         else:
             raise ValueError("No decay rate in this file")
-        
+
         if decay_rate_word == "STABLE":
             self._stable = True
             self._decay_rate = 0.0
             self._decay_atomic_number_change = 0
             self._decay_atomic_mass_change = 0
             return
-        
+
         self._stable = False
         self._decay_rate = math.log(2) / float(decay_rate_word)
         match decay_rate_unit:
@@ -156,39 +157,39 @@ class IsomerData:
 
     @property
     def stable(self):
-        return(self._stable)
+        return self._stable
 
     @property
     def decay_rate(self):
-        return (self._decay_rate)
-    
+        return self._decay_rate
+
     @property
     def decay_atomic_number_change(self):
-        return (self._decay_atomic_number_change)  
-    
+        return self._decay_atomic_number_change
+
     @property
     def decay_atomic_mass_change(self):
-        return (self._decay_atomic_mass_change)
-    
+        return self._decay_atomic_mass_change
+
     @property
     def atomic_number(self):
-        return(self._atomic_number)
-    
+        return self._atomic_number
+
     @property
     def atomic_mass(self):
-        return(self._atomic_mass)
-    
+        return self._atomic_mass
+
     @property
     def energy_state(self):
-        return(self._energy_state)
-    
+        return self._energy_state
+
     @property
     def daughter_name(self):
         daughter_atomic_number = self.atomic_number + self.decay_atomic_number_change
         daughter_atomic_mass = self.atomic_mass + self.decay_atomic_mass_change
         daughter_energy_state = 0
 
-        return(self.isomer_name_from_nuclear_data(daughter_atomic_number, daughter_atomic_mass, daughter_energy_state))
-    
+        return self.isomer_name_from_nuclear_data(daughter_atomic_number, daughter_atomic_mass, daughter_energy_state)
+
     def __str__(self):
-        return("Isomer data for {}".format(self.isomer_name))
+        return "Isomer data for {}".format(self.isomer_name)

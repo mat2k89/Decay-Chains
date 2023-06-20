@@ -2,32 +2,33 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate
 
+
 class System:
     @property
     def matrix(self):
-        return(self._matrix)
-    
+        return self._matrix
+
     @property
     def results(self):
-        return(self._results)
-    
+        return self._results
+
     @property
     def y(self):
-        return(self._results.y)
-    
+        return self._results.y
+
     @property
     def t(self):
-        return(self._results.t)
-    
+        return self._results.t
+
     @property
     def isomer_names(self):
-        return(self._isomer_names)
+        return self._isomer_names
 
     def solve_system(self, t_eval):
         def derivatives(t, y):
             derivative = np.matmul(self.matrix, y)
 
-            return(derivative)
+            return derivative
 
         t_span = np.array((t_eval[0], t_eval[-1]))
 
@@ -40,8 +41,3 @@ class System:
         plt.ylabel("Number of Moles")
         plt.legend()
         plt.show()
-
-
-
-        
-        

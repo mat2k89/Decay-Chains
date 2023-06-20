@@ -1,7 +1,7 @@
 from src.system import System
 import numpy as np
 from src.isomer_data import IsomerData
-import os
+
 
 class SystemGenerated(System):
     def __init__(self, initial_populations, data_path_prefix=None):
@@ -18,7 +18,6 @@ class SystemGenerated(System):
         self._setup_matrix()
 
     def _add_isomer_and_daughter_data(self, isomer_name):
-        
         try:
             self._isomer_data[isomer_name]
             return
@@ -32,10 +31,10 @@ class SystemGenerated(System):
     def _get_isomer_index(self, isomer_name):
         for i, stored_name in enumerate(self._isomer_data):
             if stored_name == isomer_name:
-                return(i)
+                return i
         else:
             raise ValueError("Isomer name not found")
-        
+
     def _setup_initial_conditions(self, initial_populations):
         self._initial_conditions = np.zeros(len(self._isomer_data))
 
@@ -44,7 +43,7 @@ class SystemGenerated(System):
             self._initial_conditions[i] = isomer_population
 
     def _setup_matrix(self):
-        self._matrix = np.zeros([len(self._isomer_data)]*2)
+        self._matrix = np.zeros([len(self._isomer_data)] * 2)
 
         for isomer_name in self.isomer_names:
             isomer_data = self._isomer_data[isomer_name]
