@@ -31,4 +31,9 @@ Tip 2: You will need to decide how to read the relevant files to obtain the nece
 
 Write a piece of code capable of receiving the results of the main calculation (i.e. the populations of the different isomers as a function of time) and plots them in a figure.
 
-Note that, as this is a very open-ended activity, there are no corresponding tests for this activity.
+Note that, as this is a very open-ended activity, there are no corresponding tests for this activity. However, as a suggestion, the sample solution produces an image which looks like this:
+
+<p align="center">
+  <img src="https://github.com/coolernato/Decay-Chains/blob/main/resources/sample_output.png" />
+</p>
+
