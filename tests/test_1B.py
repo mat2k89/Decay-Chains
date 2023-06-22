@@ -2,6 +2,7 @@ import unittest
 import src.test_interfaces as interface
 import math
 
+
 class Test_1B(unittest.TestCase):
     '''
     Tests the code produced for Activity 1B

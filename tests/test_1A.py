@@ -2,6 +2,7 @@ import unittest
 import src.test_interfaces as interface
 import math
 
+
 class Test_1A(unittest.TestCase):
     '''
     Tests the code produced for exercise 1B
@@ -40,8 +41,8 @@ class Test_1A(unittest.TestCase):
         program_result = interface.task_1a_simple_decay_chain_populations(output_times, initial_value, decay_rate)
 
         # Calculate the reference results
-        reference_result1 = list(map(lambda t : initial_value * math.exp(-t * decay_rate), output_times))
-        reference_result2 = list(map(lambda pop1 : initial_value - pop1, reference_result1))
+        reference_result1 = list(map(lambda t: initial_value * math.exp(-t * decay_rate), output_times))
+        reference_result2 = list(map(lambda pop1: initial_value - pop1, reference_result1))
 
         # Compare the results
         for time, reference_value1, reference_value2, program_value1, program_value2 in zip(output_times, reference_result1, reference_result2, program_result[0], program_result[1]):
@@ -64,8 +65,8 @@ class Test_1A(unittest.TestCase):
         program_result = interface.task_1a_simple_decay_chain_populations(output_times, initial_value, decay_rate)
 
         # Calculate the reference results
-        reference_result1 = list(map(lambda t : initial_value * math.exp(-t * decay_rate), output_times))
-        reference_result2 = list(map(lambda pop1 : initial_value - pop1, reference_result1))
+        reference_result1 = list(map(lambda t: initial_value * math.exp(-t * decay_rate), output_times))
+        reference_result2 = list(map(lambda pop1: initial_value - pop1, reference_result1))
 
         # Compare the results
         for time, reference_value1, reference_value2, program_value1, program_value2 in zip(output_times, reference_result1, reference_result2, program_result[0], program_result[1]):

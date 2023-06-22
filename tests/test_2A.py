@@ -2,6 +2,7 @@ import unittest
 import src.test_interfaces as interface
 import math
 
+
 class Test_2A(unittest.TestCase):
     '''
     Tests the code produced for Activity 2A
@@ -39,7 +40,7 @@ class Test_2A(unittest.TestCase):
 
         code_results = interface.task_2_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times)
 
-        reference_results = {"H1":[1.0] * 100}
+        reference_results = {"H1": [1.0] * 100}
 
         self.compare_results(code_results, reference_results, output_times, initial_isomer_name, initial_isomer_population)
 
@@ -57,8 +58,8 @@ class Test_2A(unittest.TestCase):
 
         # Calculate the reference results
         reference_results = {}
-        reference_results["Ni65"] = list(map(lambda t : initial_isomer_population * math.exp(-t * decay_rate), output_times))
-        reference_results["Cu65"] = list(map(lambda pop1 : initial_isomer_population - pop1, reference_results["Ni65"]))
+        reference_results["Ni65"] = list(map(lambda t: initial_isomer_population * math.exp(-t * decay_rate), output_times))
+        reference_results["Cu65"] = list(map(lambda pop1: initial_isomer_population - pop1, reference_results["Ni65"]))
 
         print(reference_results)
         print(code_results)
@@ -72,7 +73,7 @@ class Test_2A(unittest.TestCase):
 
         initial_isomer_name = "Pd98"
         initial_isomer_population = 100
-        output_times = list(range(0,1000, 100))
+        output_times = list(range(0, 1000, 100))
 
         code_results = interface.task_2_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times)
 
@@ -81,15 +82,14 @@ class Test_2A(unittest.TestCase):
         # Calculate the reference results using Analytic Results
         reference_results = {}
         decay_rate_Pd = math.log(2) / (17.7 * 60)
-        decay_rate_Rh  = math.log(2) / (8.72 * 60)
-        reference_results["Pd98"] = list(map(lambda t : initial_isomer_population * math.exp(-t * decay_rate_Pd), output_times))
+        decay_rate_Rh = math.log(2) / (8.72 * 60)
+        reference_results["Pd98"] = list(map(lambda t: initial_isomer_population * math.exp(-t * decay_rate_Pd), output_times))
 
-        reference_results["Rh98"] = list(map(lambda t : initial_isomer_population * decay_rate_Pd * (math.exp(-decay_rate_Pd * t) - math.exp(-decay_rate_Rh * t)) / (decay_rate_Rh - decay_rate_Pd), output_times))
+        reference_results["Rh98"] = list(map(lambda t: initial_isomer_population * decay_rate_Pd * (math.exp(-decay_rate_Pd * t) - math.exp(-decay_rate_Rh * t)) / (decay_rate_Rh - decay_rate_Pd), output_times))
 
-        reference_results["Ru98"] = list(map(lambda pops_Pd_Rh : initial_isomer_population - pops_Pd_Rh[0] - pops_Pd_Rh[1], zip(reference_results["Pd98"], reference_results["Rh98"])))
+        reference_results["Ru98"] = list(map(lambda pops_Pd_Rh: initial_isomer_population - pops_Pd_Rh[0] - pops_Pd_Rh[1], zip(reference_results["Pd98"], reference_results["Rh98"])))
 
         print(reference_results)
         print(code_results)
 
         self.compare_results(code_results, reference_results, output_times, initial_isomer_name, initial_isomer_population)
-

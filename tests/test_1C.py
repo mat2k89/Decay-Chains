@@ -1,6 +1,7 @@
 import unittest
 import src.test_interfaces as interface
 
+
 class Test_1C(unittest.TestCase):
     '''
     Tests the code produced for Activity 1C
@@ -24,7 +25,7 @@ class Test_1C(unittest.TestCase):
         '''
         Tests if the correct endf filename is returned when both the atomic number and atomic mass are two digit numbers and the energy state is zero
         '''
-        
+
         atomic_number = 18
         atomic_mass = 40
         energy_state = 0
