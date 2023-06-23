@@ -1,6 +1,6 @@
 import os
 import math
-from src.element_info import ElementInfo
+from sample_solution.element_info import ElementInfo
 
 
 class IsomerData:

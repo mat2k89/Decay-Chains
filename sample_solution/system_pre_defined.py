@@ -1,4 +1,4 @@
-from src.system import System
+from sample_solution.system import System
 import numpy as np
 
 
