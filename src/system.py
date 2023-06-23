@@ -24,7 +24,7 @@ class System:
     def isomer_names(self):
         return self._isomer_names
 
-    def solve_system(self, t_eval):
+    def solve_system(self, t_eval: np.array):
         def derivatives(t, y):
             derivative = np.matmul(self.matrix, y)
 

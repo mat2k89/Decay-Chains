@@ -5,7 +5,7 @@ from src.element_info import ElementInfo
 
 class IsomerData:
     @classmethod
-    def filename_from_nuclear_data(cls, atomic_number, atomic_mass, energy_state=0):
+    def filename_from_nuclear_data(cls, atomic_number: int, atomic_mass: int, energy_state: int = 0):
         filename = "dec-{}_{}_{}".format(str(atomic_number).zfill(3), ElementInfo.get_element_symbol_from_atomic_number(atomic_number), str(atomic_mass).zfill(3))
 
         if energy_state:
@@ -16,7 +16,7 @@ class IsomerData:
         return filename
 
     @staticmethod
-    def isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_state=0):
+    def isomer_name_from_nuclear_data(atomic_number: int, atomic_mass: int, energy_state: int = 0):
         isomer_name = "{}{}".format(ElementInfo.get_element_symbol_from_atomic_number(atomic_number), atomic_mass)
 
         if energy_state:
@@ -25,7 +25,7 @@ class IsomerData:
         return isomer_name
 
     @classmethod
-    def nuclear_data_from_name(cls, isomer_name):
+    def nuclear_data_from_name(cls, isomer_name: str):
         for i, char in enumerate(isomer_name):
             if char.isnumeric():
                 n_char_symbol = i
@@ -47,7 +47,7 @@ class IsomerData:
         return atomic_number, atomic_mass, energy_state
 
     @classmethod
-    def filename_from_isomer_name(cls, isomer_name):
+    def filename_from_isomer_name(cls, isomer_name: str):
         nuclear_data = cls.nuclear_data_from_name(isomer_name)
 
         filename = cls.filename_from_nuclear_data(*nuclear_data)
@@ -55,7 +55,7 @@ class IsomerData:
         return filename
 
     @staticmethod
-    def nuclear_data_from_filename(filename):
+    def nuclear_data_from_filename(filename: str):
         atomic_number = int(filename[4:7])
         mass_and_group = filename.split("_")[2].split(".")[0]
         atomic_mass = int(mass_and_group.split("m")[0])
@@ -67,7 +67,7 @@ class IsomerData:
         return atomic_number, atomic_mass, energy_state
 
     @classmethod 
-    def isomer_name_from_filename(cls, filename):
+    def isomer_name_from_filename(cls, filename: str):
         nuclear_data = cls.nuclear_data_from_filename(filename)
 
         isomer_name = cls.isomer_name_from_nuclear_data(*nuclear_data)
@@ -75,12 +75,12 @@ class IsomerData:
         return isomer_name
 
     @classmethod
-    def instance_from_filename(cls, filename, directory_prefix=None):
+    def instance_from_filename(cls, filename: str, directory_prefix: str = None):
         isomer_name = cls.isomer_name_from_filename(filename)
 
         return cls(isomer_name, directory_prefix)
 
-    def __init__(self, isomer_name, data_directory_prefix=None):
+    def __init__(self, isomer_name: str, data_directory_prefix: str = None):
         self._isomer_name = isomer_name
         self._atomic_number, self._atomic_mass, self._energy_state = self.nuclear_data_from_name(isomer_name)
 

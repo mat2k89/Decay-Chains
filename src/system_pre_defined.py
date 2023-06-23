@@ -3,7 +3,7 @@ import numpy as np
 
 
 class SystemPreDefined(System):
-    def __init__(self, initial_conditions, decay_rates, isomer_names=None):
+    def __init__(self, initial_conditions: np.array, decay_rates: np.array, isomer_names: np.array = None):
         if len(initial_conditions) != len(decay_rates):
             raise ValueError("There should be the same number of initial conditions as decay rates")
 
