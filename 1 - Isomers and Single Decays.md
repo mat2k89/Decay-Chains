@@ -52,7 +52,7 @@ $$
 
 This means that, form every million nuclei of Xe $^{135}$ present, around 21 of them will decay each second.
 
-We can return the differential equations we defined earlier for the rate of change of the number of moles of Xe $^{135}$ and Cs $^{135}$ and solve these by a number of differen means to describe the number of moles of these two isotopes over a period of time. We can plot the number of moles of the isotopes present as a function of time giving an initial population of 1 mole of Xe $^{135}$ :
+We can return the differential equations we defined earlier for the rate of change of the number of moles of Xe $^{135}$ and Cs $^{135}$ and solve these by a number of different means to describe the number of moles of these two isotopes over a period of time. We can plot the number of moles of the isotopes present as a function of time giving an initial population of 1 mole of Xe $^{135}$ :
 
 <p align="center">
   <img src="https://github.com/coolernato/Decay-Chains/blob/main/resources/Xe_135_Cs_135.jpg" />
@@ -62,9 +62,9 @@ The production of data like these can help us to predict the populations of radi
 
 ### The ENDF Decay Dataset
 
-In order to perform simulations like this, we need data relating to how fast isomers decay and how the decay. There are several datasets available which provide this information. The ENDF dataset is provided by the [Nantional Nuclear Data Centre (NNDC)](https://www.nndc.bnl.gov/sigma/index.jsp?as=239&lib=endfb7.0&nsub=10). The dataset as a whole contains a lot of information relating to various properties of different nuclei. Copies of the files relating to radioactive decay are included in the ```decay_data``` directory of this repository.
+In order to perform simulations like this, we need data relating to how fast isomers decay and how the decay. There are several datasets available which provide this information. The ENDF dataset is provided by the [National Nuclear Data Centre (NNDC)](https://www.nndc.bnl.gov/sigma/index.jsp?as=239&lib=endfb7.0&nsub=10). The dataset as a whole contains a lot of information relating to various properties of different nuclei. Copies of the files relating to radioactive decay are included in the ```decay_data``` directory of this repository.
 
-The filename for a given isomer is ```dec-```, followed by the atomic number of the isomer (padded with leading zeroes so it's three digits long), a ```_```, the atomic symbol for the element (e.g. ```He``` for Helium), another ```_```, then atomic mass of the isomer (padded with leading zeroes so it's three digits long), and finally ```.endf```. Files in this format all relate to the ground state isomers of an isotope. Files which correspond to a higher state have an adittional ```m1``` for the first excited stated, ```m2``` for the second excited state and so on immediately before the ```.endf```. To give a few examples:
+The filename for a given isomer is ```dec-```, followed by the atomic number of the isomer (padded with leading zeroes so it's three digits long), a ```_```, the atomic symbol for the element (e.g. ```He``` for Helium), another ```_```, then atomic mass of the isomer (padded with leading zeroes so it's three digits long), and finally ```.endf```. Files in this format all relate to the ground state isomers of an isotope. Files which correspond to a higher state have an additional ```m1``` for the first excited stated, ```m2``` for the second excited state and so on immediately before the ```.endf```. To give a few examples:
 
 * Data relating to the ground state of Carbon-14 (atomic number 6) if found in ```dec-006_C_014.endf```
 * Data relating to the ground state of Mendelevium-255 (atomic number 101) is found in ```dec-101_Md_255.endf```
@@ -80,7 +80,7 @@ In this file, we only care about the section highlighted in red.
 
 #### Obtaining the Half-Life
 
-The line that has the phrase "Parent half-life" describes the half-life of Xe$^{135}$ by providing first the numerical value of 9.14, then the units ```H``` which refers to the nubmbr of hours. We can ignore the ```2``` following the ```H``` and the rest of the line.  The different characters to describe the units and the corresponding units are:
+The line that has the phrase "Parent half-life" describes the half-life of Xe$^{135}$ by providing first the numerical value of 9.14, then the units ```H``` which refers to the number of hours. We can ignore the ```2``` following the ```H``` and the rest of the line.  The different characters to describe the units and the corresponding units are:
 
 | Character     | Unit | Number of Seconds |
 | ----------- | ----------- | -- |
@@ -109,7 +109,7 @@ The decay mode is contained on the line beginning ```Decay mode:```. In the exam
 
 For each of the activities below, complete the code in your ```src``` directory in whatever way you wish, organising your code however you think makes most sense. The tasks are deliberately vague in terms of how the code should be organised, so use whatever structure of functions, classes, modules, etc that you think is best. 
 
-For each activity there are tests in the ```tests``` directory which relate to the activity. For instance ```tests/test_1A``` contains the tests relating to Activity 1A. In order to allow these tests to check your code, you will need to edit the relevant functions in these file ```src/test_intterfaces.py``` so they use your code. This should give you some more idea of what your code should do, as well allowing you to test that your code is working correctly.
+For each activity there are tests in the ```tests``` directory which relate to the activity. For instance ```tests/test_1A``` contains the tests relating to Activity 1A. In order to allow these tests to check your code, you will need to edit the relevant functions in these file ```src/test_interfaces.py``` so they use your code. This should give you some more idea of what your code should do, as well allowing you to test that your code is working correctly.
 
 As a reminder, these activities can be undertaken in parallel if you're working in a group, so feel free to split up on work on different activities together.
 
@@ -119,7 +119,7 @@ Write code able to solve differential equations such as those above in the "Nucl
 
 For example:
 * If Isomer 1 has a decay rate of 0/s and an initial population of 10and values are requested at t=0, and t=100s: Isomer 1 should have a population of ```(10, 10)``` and Isomer 2 should have a population of ```(0, 0)```.
-* If Isomer 1 has a deacy rate of 5/s and an initial population of 2 and values are requested at t=0, t=0.5s and t=1s, Isomer 1 should have the populations ```(2, 0.164, 0.0135)``` and Isomer 2 should have the populations ```(0, 1.836, 1.9865)```
+* If Isomer 1 has a decay rate of 5/s and an initial population of 2 and values are requested at t=0, t=0.5s and t=1s, Isomer 1 should have the populations ```(2, 0.164, 0.0135)``` and Isomer 2 should have the populations ```(0, 1.836, 1.9865)```
 
 Hint: this type of problem is often referred to as an "initial value problem" as you have the initial state of the system and want to calculate the future states of the system by solving the ordinary differential equations forward in time.
 
@@ -127,7 +127,7 @@ Hint: this type of problem is often referred to as an "initial value problem" as
 
 Write code able to read the ENDF data files and extract the half-life and decay mode of a given isomer. Given the name of a file (without any path prefix) your code should be able to open the file and find:
 * the half-life and convert it to a decay rate in units of 1/s (noting this will be zero for stable isomers)
-* the decay mode and so the effect this has on the atomic number, atomic mass, and energy state number of the decaying isomer. If the isomer is stable, the change on the atomic number and aotmic mass should both be considered zero.
+* the decay mode and so the effect this has on the atomic number, atomic mass, and energy state number of the decaying isomer. If the isomer is stable, the change on the atomic number and atomic mass should both be considered zero.
 
 For instance:
 * Providing the filename ```dec-002_He_004.endf``` should be found to have a decay rate of 0/s and a corresponding change to atomic number of 0 and atomic mass of 0
