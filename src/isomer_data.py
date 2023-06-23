@@ -4,8 +4,18 @@ from src.element_info import ElementInfo
 
 
 class IsomerData:
+    '''
+    This class retrieves and stores data relevant to a single isomer
+    '''
     @classmethod
     def filename_from_nuclear_data(cls, atomic_number: int, atomic_mass: int, energy_state: int = 0):
+        '''
+        Returns the filename of the ENDF file for the isomer with the given nuclear data
+        :param cls: The class
+        :param atomic_number: int The atomic number of the isomer
+        :param atomic_mass: int The atomic mass of the isomer
+        :param energy_state: int The energy state of the isomer
+        :return: str The filename of the ENDF file for the isomer with the given nuclear data'''
         filename = "dec-{}_{}_{}".format(str(atomic_number).zfill(3), ElementInfo.get_element_symbol_from_atomic_number(atomic_number), str(atomic_mass).zfill(3))
 
         if energy_state:
@@ -17,6 +27,13 @@ class IsomerData:
 
     @staticmethod
     def isomer_name_from_nuclear_data(atomic_number: int, atomic_mass: int, energy_state: int = 0):
+        '''
+        Returns the isomer name of the isomer with the given nuclear data
+        :param atomic_number: int The atomic number of the isomer
+        :param atomic_mass: int The atomic mass of the isomer
+        :param energy_state: int The energy state of the isomer
+        :return: str The isomer name of the isomer with the given nuclear data
+        '''
         isomer_name = "{}{}".format(ElementInfo.get_element_symbol_from_atomic_number(atomic_number), atomic_mass)
 
         if energy_state:
@@ -26,6 +43,12 @@ class IsomerData:
 
     @classmethod
     def nuclear_data_from_name(cls, isomer_name: str):
+        '''
+        Returns the nuclear data of the isomer with the given isomer name
+        :param cls: The class
+        :param isomer_name: str The isomer name of the isomer
+        :return: tuple(int, int, int) The nuclear data of the isomer with the given isomer name
+        '''
         for i, char in enumerate(isomer_name):
             if char.isnumeric():
                 n_char_symbol = i
@@ -48,6 +71,12 @@ class IsomerData:
 
     @classmethod
     def filename_from_isomer_name(cls, isomer_name: str):
+        '''
+        Returns the filename of the ENDF file for the isomer with the given isomer name
+        :param cls: The class
+        :param isomer_name: str The isomer name of the isomer
+        :return: str The filename of the ENDF file for the isomer with the given isomer name
+        '''
         nuclear_data = cls.nuclear_data_from_name(isomer_name)
 
         filename = cls.filename_from_nuclear_data(*nuclear_data)
@@ -56,6 +85,11 @@ class IsomerData:
 
     @staticmethod
     def nuclear_data_from_filename(filename: str):
+        '''
+        Returns the nuclear data of the isomer with the given filename
+        :param filename: str The filename of the ENDF file for the isomer
+        :return: tuple(int, int, int) The nuclear data of the isomer with the given filename
+        '''
         atomic_number = int(filename[4:7])
         mass_and_group = filename.split("_")[2].split(".")[0]
         atomic_mass = int(mass_and_group.split("m")[0])
@@ -66,8 +100,13 @@ class IsomerData:
 
         return atomic_number, atomic_mass, energy_state
 
-    @classmethod 
+    @classmethod
     def isomer_name_from_filename(cls, filename: str):
+        '''
+        Returns the isomer name of the isomer with the given filename
+        :param filename: str The filename of the ENDF file for the isomer
+        :return: str The isomer name of the isomer with the given filename
+        '''
         nuclear_data = cls.nuclear_data_from_filename(filename)
 
         isomer_name = cls.isomer_name_from_nuclear_data(*nuclear_data)
@@ -76,11 +115,21 @@ class IsomerData:
 
     @classmethod
     def instance_from_filename(cls, filename: str, directory_prefix: str = None):
+        '''
+        Returns an instance of the class representing the isomer with the given filename
+        :param filename: str The filename of the ENDF file for the isomer
+        :param directory_prefix: str The directory prefix to add to the filename
+        :return: IsomerData An instance of the class representing the isomer with the given filename'''
         isomer_name = cls.isomer_name_from_filename(filename)
 
         return cls(isomer_name, directory_prefix)
 
     def __init__(self, isomer_name: str, data_directory_prefix: str = None):
+        '''
+        Initialises the class representing the isomer with the given isomer name
+        :param isomer_name: str The isomer name of the isomer
+        :param data_directory_prefix: str The directory prefix to add to the filename
+        '''
         self._isomer_name = isomer_name
         self._atomic_number, self._atomic_mass, self._energy_state = self.nuclear_data_from_name(isomer_name)
 
@@ -157,34 +206,62 @@ class IsomerData:
 
     @property
     def stable(self):
+        '''
+        Returns whether the isomer is stable
+        :return: bool Whether the isomer is stable'''
         return self._stable
 
     @property
     def decay_rate(self):
+        '''
+        Returns the decay rate of the isomer
+        :return: float The decay rate of the isomer in units of 1/s'''
         return self._decay_rate
 
     @property
     def decay_atomic_number_change(self):
+        '''
+        Returns the change in atomic number of the isomer due to decay
+        :return: int The change in atomic number of the isomer due to decay
+        '''
         return self._decay_atomic_number_change
 
     @property
     def decay_atomic_mass_change(self):
+        '''
+        Returns the change in atomic mass of the isomer due to decay
+        :return: int The change in atomic mass of the isomer due to decay
+        '''
         return self._decay_atomic_mass_change
 
     @property
     def atomic_number(self):
+        '''
+        Returns the atomic number of the isomer
+        :return: int The atomic number of the isomer'''
         return self._atomic_number
 
     @property
     def atomic_mass(self):
+        '''
+        Returns the atomic mass of the isomer
+        :return: int The atomic mass of the isomer'''
         return self._atomic_mass
 
     @property
     def energy_state(self):
+        '''
+        Returns the energy state of the isomer
+        :return: int The energy state of the isomer
+        '''
         return self._energy_state
 
     @property
     def daughter_name(self):
+        '''
+        Returns the name of the daughter isomer
+        :return: str The name of the daughter isomer
+        '''
         daughter_atomic_number = self.atomic_number + self.decay_atomic_number_change
         daughter_atomic_mass = self.atomic_mass + self.decay_atomic_mass_change
         daughter_energy_state = 0
@@ -192,4 +269,8 @@ class IsomerData:
         return self.isomer_name_from_nuclear_data(daughter_atomic_number, daughter_atomic_mass, daughter_energy_state)
 
     def __str__(self):
+        '''
+        Returns a string representation of the isomer
+        :return: str A string representation of the isomer
+        '''
         return "Isomer data for {}".format(self.isomer_name)
