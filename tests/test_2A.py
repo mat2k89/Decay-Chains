@@ -38,7 +38,7 @@ class Test_2A(unittest.TestCase):
         initial_isomer_population = 1
         output_times = [i * 0.1 for i in range(100)]
 
-        code_results = interface.task_2_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times)
+        code_results = interface.task_2a_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times)
 
         reference_results = {"H1": [1.0] * 100}
 
@@ -54,7 +54,7 @@ class Test_2A(unittest.TestCase):
         output_times = [i * 1000 for i in range(50)]
         decay_rate = 7.649040536823748e-05
 
-        code_results = interface.task_2_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times)
+        code_results = interface.task_2a_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times)
 
         # Calculate the reference results
         reference_results = {}
@@ -75,7 +75,7 @@ class Test_2A(unittest.TestCase):
         initial_isomer_population = 100
         output_times = list(range(0, 1000, 100))
 
-        code_results = interface.task_2_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times)
+        code_results = interface.task_2a_isomer_chain_from_initial_population(initial_isomer_name, initial_isomer_population, output_times)
 
         print(code_results)
 

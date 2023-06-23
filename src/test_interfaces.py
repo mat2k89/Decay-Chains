@@ -82,7 +82,7 @@ def task_1c_isomer_nuclear_data_from_name(isomer_name: str):
     '''
     Edit this function as part of Activity 1C
     This function should accept the name of an isomer and return its nuclear data
-    :param isomer_name: str containing the name of the nucleus (e.g. "Na24m1") 
+    :param isomer_name: str containing the name of the nucleus (e.g. "Na24m1")
     :returns: Should be a tuple containing the atomic number, atomic mass and energy state number as ints
     '''
 
@@ -91,8 +91,14 @@ def task_1c_isomer_nuclear_data_from_name(isomer_name: str):
     return src.isomer_data.IsomerData.nuclear_data_from_name(isomer_name)
 
 
-def task_2_isomer_chain_from_initial_population(initial_isomer_name: str, initial_isomer_population: str, output_times: list):
+def task_2a_isomer_chain_from_initial_population(initial_isomer_name: str, initial_isomer_population: float, output_times: list):
     '''
+    Edit this function as part of Activity 2A
+    This function should accept the name of an isomer and return the populations of this and all daughter isomer sas a function of time
+    :param isomer_name: str containing the name of the nucleus (e.g. "Na24m1")
+    :param initial_isomer_population: float The number of moles of the initial isomer present
+    :param output_times: list[float] The times at which the populations of isomers should be calculated. The first value will always be 0.
+    :returns: Should be a dict whose keys are the names of the daughter isomers, and whose values are sequences (lists, tuple, numpy arrays, etc) holding the populations of those isomers at the output times
     '''
 
     import src.system_generated
