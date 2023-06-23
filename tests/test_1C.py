@@ -2,9 +2,10 @@ import unittest
 import src.test_interfaces as interface
 
 
-class Test_1C(unittest.TestCase):
+class Test_1C_Filename_Generation(unittest.TestCase):
     '''
     Tests the code produced for Activity 1C
+    Tests the generation of filenames
     '''
 
     def test_filename_short_numbers_zero_energy(self):
@@ -61,6 +62,12 @@ class Test_1C(unittest.TestCase):
 
         self.assertEqual(filename, reference_filename, msg="When asked for the filename relating to an isomer with atomic number {}, atomic mass {}, and energy state {} your code returned {} when it should have returned {}".format(atomic_number, atomic_mass, energy_state, filename, reference_filename))
 
+
+class Test_1C_Isomer_Name_Generation(unittest.TestCase):
+    '''
+    Tests the code produced for Activity 1C
+    Tests the generation of isomer names
+    '''
     def test_isomer_name_short_numbers_zero_energy(self):
         '''
         Tests if the correct endf isomer name is returned when both the atomic number and atomic mass are one-digit numbers and the energy state is zero
@@ -115,6 +122,12 @@ class Test_1C(unittest.TestCase):
 
         self.assertEqual(isomer_name, reference_name, msg="When asked for the isomer name relating to an isomer with atomic number {}, atomic mass {}, and energy state {} your code returned {} when it should have returned {}".format(atomic_number, atomic_mass, energy_state, isomer_name, reference_name))
 
+
+class Test_1C_Nuclear_Data_Generation(unittest.TestCase):
+    '''
+    Tests the code produced for Activity 1C
+    Tests the generation of  nuclear data
+    '''
     def test_nuclear_data_from_isomer_name_short(self):
         '''
         Tests if the correct nuclear data is returned when a short isomer name is provided
