@@ -6,7 +6,7 @@ These functions will be called by tests in the test suite to ensure you code is 
 
 def task_0_always_return_0():
     '''This function should always return the value zero'''
-    pass
+    return 0
 
 
 def task_0_addition(a, b):
@@ -23,7 +23,6 @@ def task_1a_simple_decay_chain_populations(output_times: list, initial_number_of
     :param decay_rate: The decay rate of the decaying isomer in units of 1/s.
     :returns: Should return two sequences (e.g. lists, Tuples, 1D Numpy arrays) of length n where n is the number of output times. The first sequence contains the populations of Isomer 1 as a function of time, the second contains he populations of Isomer 1 as a function of time. Ine ach sequence, the value with index [0] in each array is the population the isomer at t=0 and the value with index [n] is the number of moles of the isomer at the end of the simulation.
     '''
-    pass
 
 
 def task_1b_decay_data_from_filename(filepath: str):
@@ -46,7 +45,10 @@ def task_1c_endf_filename_from_nuclear_data(atomic_number: int, atomic_mass: int
     :param energy state: int providing the energy_state_number
     :returns: Should be a string containing the endf filename  corresponding to the nuclear data (without any preceding path), e.g. dec-006_C_016
     '''
-    pass
+    # Import function form conversions.py
+    from . import conversions
+    # Call function from conversions.py
+    return conversions.filename_from_nuclear_data(atomic_number, atomic_mass, energy_state)
 
 
 def task_1c_isomer_name_from_nuclear_data(atomic_number: int, atomic_mass: int, energy_state: int):
@@ -58,7 +60,10 @@ def task_1c_isomer_name_from_nuclear_data(atomic_number: int, atomic_mass: int, 
     :param energy state: int providing the energy_state_number
     :returns: Should be a string containing the isomer name  corresponding to the nuclear data, e.g. C16m1
     '''
-    pass
+    # Import function form conversions.py
+    from . import conversions
+    # Call function from conversions.py
+    return conversions.isomer_name_from_nuclear_data(atomic_number, atomic_mass, energy_state)
 
 
 def task_1c_isomer_nuclear_data_from_name(isomer_name: str):
@@ -68,7 +73,10 @@ def task_1c_isomer_nuclear_data_from_name(isomer_name: str):
     :param isomer_name: str containing the name of the nucleus (e.g. "Na24m1")
     :returns: Should be a tuple containing the atomic number, atomic mass and energy state number as ints
     '''
-    pass
+    # Import function form conversions.py
+    from . import conversions
+    # Call function from conversions.py
+    return conversions.isomer_nuclear_data_from_name(isomer_name)
 
 
 def task_2a_isomer_chain_from_initial_population(initial_isomer_name: str, initial_isomer_population: float, output_times: list):
