@@ -32,7 +32,15 @@ def task_1b_decay_data_from_filename(filepath: str):
     :param filename: str containing the filename to be read from, with no path prefix (such as "dec-019_K_040.endf")
     :returns: Should be a tuple containing the decay rate as a float units of 1/s, and the change to the atomic number and atomic mass caused by the decay as ints (e.g. (1.0, -2, 4) for alpha decay with a decay rate of 1.0/s)
     '''
-    pass
+    from . import isomers_lookup
+
+    (
+        decay_rate,
+        atomic_number_change,
+        atomic_mass_change,
+    ) = isomers_lookup.read_endf_file(filepath)
+
+    return decay_rate, atomic_number_change, atomic_mass_change
 
 
 def task_1c_endf_filename_from_nuclear_data(atomic_number: int, atomic_mass: int, energy_state: int):
